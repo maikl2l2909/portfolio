@@ -10,5 +10,11 @@ class ContactController extends Controller
     {
         return Inertia::render('Contact');
     }
+
+    public function send()
+    {
+        // Placeholder handler: implement validation + persistence as needed.
+        return Inertia::render('Contact');
+    }
 }
 
