@@ -9,6 +9,10 @@ class Skill extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'tags' => 'array',
+    ];
+
     protected $fillable = [
         'name',
         'level',

@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { label: 'Home', href: '/' },
+  { label: 'Skills', href: '/skills' },
+  { label: 'Expertise', href: '/expertise' },
   { label: 'Contact', href: '/contact' },
 ];
 
