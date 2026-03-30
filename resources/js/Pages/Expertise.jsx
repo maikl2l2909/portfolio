@@ -23,7 +23,7 @@ export default function Expertise({ skills = {} }) {
     return Object.entries(skills).reduce((carry, [category, list]) => {
       carry[category] = Array.isArray(list)
         ? list.map((item) => ({
-            ...item,Make header position fixed top. And backgroud blur.
+            ...item,
             description: item.description || 'No description provided yet.',
             tags: item.tags || [],
             icon: item.icon || '⬡',
