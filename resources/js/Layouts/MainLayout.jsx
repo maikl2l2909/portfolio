@@ -23,7 +23,7 @@ export default function MainLayout({ title = 'Portfolio', children }) {
         exit={{ opacity: 0, y: -8 }}
         transition={{ duration: 0.22, ease: 'easeOut' }}
       >
-        <header className="border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615]">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white/60 dark:bg-[#161615]/80 backdrop-blur-md">
           <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <Link href="/" className="text-lg font-semibold tracking-wide">
               My Portfolio
@@ -52,22 +52,7 @@ export default function MainLayout({ title = 'Portfolio', children }) {
           </div>
         </header>
 
-        <div className="flex-1 max-w-4xl mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6">
-          <aside className="border rounded-md bg-white dark:bg-[#161615] p-4 h-fit border-[#e3e3e0] dark:border-[#3E3E3A]">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-600 dark:text-[#A1A09A] mb-3">
-              Sidebar
-            </h2>
-            <ul className="space-y-3 text-sm">
-              <li className="text-gray-700 dark:text-[#EDEDEC]">About</li>
-              <li className="text-gray-700 dark:text-[#EDEDEC]">Projects</li>
-              <li className="text-gray-700 dark:text-[#EDEDEC]">Skills</li>
-              <li className="text-gray-700 dark:text-[#EDEDEC]">Contact</li>
-            </ul>
-            <div className="mt-5 pt-4 border-t border-[#e3e3e0] dark:border-[#3E3E3A] text-xs text-gray-600 dark:text-[#A1A09A]">
-              Tip: replace sidebar items with real links when you add routes.
-            </div>
-          </aside>
-
+        <div className="flex-1 max-w-4xl mx-auto px-6 py-6 pt-20">
           <main className="border rounded-md bg-white dark:bg-[#161615] p-6 border-[#e3e3e0] dark:border-[#3E3E3A]">
             {children}
           </main>
