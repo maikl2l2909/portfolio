@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Skill;
+use App\Models\TechnologyCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -13,9 +14,11 @@ class SkillSeeder extends Seeder
      */
     public function run(): void
     {
+        $frontend = TechnologyCategory::where('name', 'Frontend')->first();
+
         Skill::create([
             'name'        => 'React',
-            'category'    => 'frontend',
+            'technology_category_id' => $frontend->id,
             'level'       => 'Expert',
             'description' => 'Component architecture, hooks, state management...',
             'tags'        => ['React 18', 'Vite', 'Zustand'],
