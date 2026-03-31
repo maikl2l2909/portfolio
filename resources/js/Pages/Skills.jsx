@@ -34,14 +34,6 @@ const CATEGORY_ICONS = {
     ),
 };
 
-const CATEGORIES = [
-    { key: 'all',      label: 'All' },
-    { key: 'frontend', label: 'Frontend' },
-    { key: 'backend',  label: 'Backend' },
-    { key: 'devops',   label: 'DevOps' },
-    { key: 'db',       label: 'Databases' },
-];
-
 // ---------------------------------------------------------------------------
 // Default/fallback data (used when no props from Inertia)
 // ---------------------------------------------------------------------------
@@ -168,7 +160,30 @@ function SkillCard({ skill, index }) {
 // ---------------------------------------------------------------------------
 // Main Skills page
 // ---------------------------------------------------------------------------
-export default function Skills({ skills = FALLBACK_SKILLS }) {
+export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories = [] }) {
+    // Create dynamic categories from technologyCategories
+    const dynamicCategories = [
+        { key: 'all', label: 'All' },
+        ...technologyCategories.map(cat => ({
+            key: cat.name.toLowerCase().replace(/\s+/g, ''), // e.g., 'Frontend' -> 'frontend'
+            label: cat.name,
+            icon: cat.icon,
+        }))
+    ];
+
+    // Create dynamic category icons
+    const dynamicCategoryIcons = {};
+    technologyCategories.forEach(cat => {
+        const key = cat.name.toLowerCase().replace(/\s+/g, '');
+        dynamicCategoryIcons[key] = cat.icon || '📁'; // fallback icon
+    });
+
+    console.log('technologyCategories', technologyCategories)
+
+    // Use dynamic data if available, otherwise fallback
+    const categories = technologyCategories.length > 0 ? dynamicCategories : [];
+    const categoryIcons = technologyCategories.length > 0 ? dynamicCategoryIcons : CATEGORY_ICONS;
+
     const [activeTab, setActiveTab] = useState('all');
     const [animKey, setAnimKey] = useState(0);
 
@@ -184,7 +199,7 @@ export default function Skills({ skills = FALLBACK_SKILLS }) {
     const counts = {
         all: allSkills.length,
         ...Object.fromEntries(
-            Object.entries(skills).map(([cat, list]) => [cat, list.length])
+            Object.entries(skills).map(([cat, list]) => [cat.toLowerCase().replace(/\s+/g, ''), list.length])
         ),
     };
 
@@ -215,7 +230,7 @@ export default function Skills({ skills = FALLBACK_SKILLS }) {
 
                     {/* ── Filter tabs ── */}
                     <div className="mb-10 flex flex-wrap gap-2">
-                        {CATEGORIES.map(({ key, label }) => (
+                        {categories.map(({ key, label }) => (
                             <button
                                 key={key}
                                 onClick={() => handleTabChange(key)}
@@ -226,9 +241,9 @@ export default function Skills({ skills = FALLBACK_SKILLS }) {
                                         : 'border-white/10 bg-white/[0.03] text-white/50 hover:border-indigo-500/50 hover:text-indigo-300',
                                 ].join(' ')}
                             >
-                                {key !== 'all' && (
+                                {key !== 'all' && categoryIcons[key] && (
                                     <span className="opacity-60">
-                                        {CATEGORY_ICONS[key]}
+                                        {categoryIcons[key]}
                                     </span>
                                 )}
                                 {label}
@@ -261,7 +276,7 @@ export default function Skills({ skills = FALLBACK_SKILLS }) {
 
                     {/* ── Footer note ── */}
                     <p className="mt-14 font-mono text-[11px] text-white/20">
-                        {allSkills.length} skills across {Object.keys(skills).length} categories
+                        {allSkills.length} skills across {technologyCategories.length || Object.keys(skills).length} categories
                     </p>
 
                 </div>
