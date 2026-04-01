@@ -52,7 +52,7 @@ export default function MainLayout({ title = 'Portfolio', children }) {
           </div>
         </header>
 
-        <div className="flex-1 max-w-4xl mx-auto px-6 py-6 pt-20">
+        <div className="flex-1 mx-auto  py-6 pt-20">
           <main className="border rounded-md bg-white dark:bg-[#161615] p-6 border-[#e3e3e0] dark:border-[#3E3E3A]">
             {children}
           </main>
