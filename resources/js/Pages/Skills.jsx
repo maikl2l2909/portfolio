@@ -13,22 +13,22 @@ const LEVEL_STYLES = {
 
 const CATEGORY_ICONS = {
     frontend: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
         </svg>
     ),
     backend: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
         </svg>
     ),
     devops: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
         </svg>
     ),
     db: (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
         </svg>
     ),
@@ -112,7 +112,7 @@ function SkillCard({ skill, index }) {
     return (
         <div
             ref={ref}
-            className="group relative rounded-xl bg-gray-50 p-5 transition-all duration-300 hover:shadow-lg hover:bg-white hover:-translate-y-1"
+            className="group relative rounded-xl p-5 transition-all duration-300"
             style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(20px)',
@@ -125,9 +125,8 @@ function SkillCard({ skill, index }) {
             {/* Top row: icon + level badge */}
             <div className="grid grid-flow-col justify-items-center mb-4">
                 <div className="flex flex-col">
-                    <div
-                        className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-base text-gray-700 group-hover:bg-indigo-500/10 group-hover:text-indigo-600 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" className="w-10 h-10">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-base text-gray-700 group-hover:bg-indigo-500/10 group-hover:text-indigo-600 transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 32 32" className="w-12 h-12">
                             <circle cx="16" cy="16" r="14" fill="#8892BF"></circle>
                             <path fill="#fff"
                                   d="M14.44 10h1.68l-.476 2.524h1.51q1.242.027 1.85.555.621.529.366 2.01l-.816 4.4H16.85l.779-4.203q.121-.66-.073-.938-.195-.278-.84-.278l-1.352-.013-.998 5.432h-1.68z"></path>
@@ -136,14 +135,16 @@ function SkillCard({ skill, index }) {
                                   clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <div className="w-9 h-1 bg-indigo-500 rounded-full mt-2"></div>
+
                 </div>
             </div>
 
             {/* Name */}
-            <h3 className="mb-1.5 text-sm font-semibold tracking-tight text-gray-900 group-hover:text-black transition-colors duration-200">
+            <div
+                className="grid grid-flow-col justify-items-center mb-4 mb-1.5 text-sm font-semibold tracking-tight text-gray-900 group-hover:text-black transition-colors duration-200">
                 {skill.name}
-            </h3>
+            </div>
+            <div className="grid grid-flow-col justify-items-center w-100% h-1 bg-indigo-500 rounded-full mt-2"></div>
         </div>
     );
 }
