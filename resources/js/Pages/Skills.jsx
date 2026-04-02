@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import SkillIcons from "./Components/SkillIcons.jsx";
+import { SKILL_ICONS } from './Components/SkillIcons';
 
 // ---------------------------------------------------------------------------
 // Level badge config
@@ -11,8 +11,6 @@ const LEVEL_STYLES = {
     Advanced: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
     Mid:      'bg-amber-100 text-amber-700 border border-amber-200',
 };
-
-console.log(SkillIcons)
 
 const CATEGORY_ICONS = {
     frontend: (
@@ -128,18 +126,22 @@ function SkillCard({ skill, index }) {
             {/* Top row: icon + level badge */}
             <div className="grid grid-flow-col justify-items-center mb-4">
                 <div className="flex flex-col">
-                    <div className="flex h-15 w-15 items-center justify-center rounded-lg bg-gray-100 text-base text-gray-700 group-hover:bg-indigo-500/10 group-hover:text-indigo-600 transition-all duration-300">
-                        {SkillIcons.php}
+                    <div
+                        className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-base text-gray-700 group-hover:bg-indigo-500/10 group-hover:text-indigo-600 transition-all duration-300">
+                        {SKILL_ICONS.php}
                     </div>
 
                 </div>
             </div>
 
             {/* Name */}
-            <div className="grid grid-flow-col justify-items-center mb-4 mb-1.5 text-sm font-semibold tracking-tight text-gray-900 group-hover:text-black transition-colors duration-200">
+            <div
+                className="grid grid-flow-col justify-items-center mb-1.5 text-sm font-semibold tracking-tight text-gray-900 group-hover:text-black transition-colors duration-200">
                 {skill.name}
             </div>
-            <div className="grid grid-flow-col justify-items-center w-100% h-1 bg-indigo-500 rounded-full mt-2"></div>
+            <div className="w-full h-1 bg-gray-100 rounded-full mt-2">
+                <div className={`w-[${skill.level}%] h-1 bg-indigo-500 rounded-full`}></div>
+            </div>
         </div>
     );
 }

@@ -19,7 +19,7 @@ class SkillSeeder extends Seeder
         Skill::create([
             'name'        => 'React',
             'technology_category_id' => $frontend->id,
-            'level'       => 'Expert',
+            'level'       => 70,
             'description' => 'Component architecture, hooks, state management...',
             'tags'        => ['React 18', 'Vite', 'Zustand'],
             'icon'        => '⬡',

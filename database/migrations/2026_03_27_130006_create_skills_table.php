@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('category'); // frontend, backend, devops, db
-            $table->string('level');    // Expert, Advanced, Mid
+            $table->integer('level');
             $table->text('description');
             $table->json('tags')->nullable();       // ["React 18", "Vite", ...]
             $table->string('icon')->nullable();

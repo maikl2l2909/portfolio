@@ -36,10 +36,4 @@ const SKILL_ICONS = {
     ),
 };
 
-function SkillIcons() {
-    return (
-        SKILL_ICONS
-    );
-}
-
-export default SkillIcons;
+export { SKILL_ICONS };
