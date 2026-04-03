@@ -40,5 +40,19 @@ class TechnologyCategorySeeder extends Seeder
             'icon' => '🗄️',
             'sort_order' => 4,
         ]);
+
+        TechnologyCategory::create([
+            'name' => 'Infrastructure',
+            'description' => 'Infrastructure',
+            'icon' => '🗄️',
+            'sort_order' => 5,
+        ]);
+
+        TechnologyCategory::create([
+            'name' => 'Tools & Frameworks',
+            'description' => 'Tools & Frameworks',
+            'icon' => '🗄️',
+            'sort_order' => 6,
+        ]);
     }
 }

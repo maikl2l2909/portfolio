@@ -128,7 +128,7 @@ function SkillCard({ skill, index }) {
                 <div className="flex flex-col">
                     <div
                         className="flex h-9 w-9 items-center justify-center rounded-lg bg-gray-100 text-base text-gray-700 group-hover:bg-indigo-500/10 group-hover:text-indigo-600 transition-all duration-300">
-                        {SKILL_ICONS.php}
+                        {SKILL_ICONS[skill.name.toLowerCase()]}
                     </div>
 
                 </div>
