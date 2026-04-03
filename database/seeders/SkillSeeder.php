@@ -49,7 +49,7 @@ class SkillSeeder extends Seeder
 
         Skill::create([
             'name'        => 'React',
-            'technology_category_id' => $backend->id,
+            'technology_category_id' => $frontend->id,
             'level'       => 70,
             'description' => 'Component architecture, hooks, state management...',
             'tags'        => ['React 18', 'Vite', 'Zustand'],
@@ -98,7 +98,34 @@ class SkillSeeder extends Seeder
         ]);
 
 
+        Skill::create([
+            'name'        => 'PHP',
+            'technology_category_id' => $backend->id,
+            'level'       => 80,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 1,
+        ]);
 
+        Skill::create([
+            'name'        => 'NodeJs',
+            'technology_category_id' => $backend->id,
+            'level'       => 30,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 2,
+        ]);
 
+        Skill::create([
+            'name'        => 'Python',
+            'technology_category_id' => $backend->id,
+            'level'       => 30,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 3,
+        ]);
     }
 }
