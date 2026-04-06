@@ -1,0 +1,17 @@
+export const SKILL_COLORS = {
+    bootstrap:  '#563D7C',
+    javascript: '#f7df1e',
+    tailwind:   '#2298bd',
+    vue:        '#41B883',
+    jquery:     '#186eb1',
+    html:       '#e34f26',
+    css:        '#1572b6',
+    react:      '#00D8FF',
+    sass:       '#CD6799',
+    php:        '#8892BF',
+    nodejs:     '#539E43',
+    python:     '#387EB8',
+    backend:    'currentColor',
+    devops:     'currentColor',
+    db:         'currentColor',
+};

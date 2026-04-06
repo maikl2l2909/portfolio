@@ -1,5 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {SKILL_ICONS} from "./SkillIcons.jsx";
+import {SKILL_COLORS} from "./SkillIconsColors.jsx";
 
 function SkillCard({ skill, index,  targetWidth}) {
     const ref = useRef(null);
@@ -65,10 +66,11 @@ function SkillCard({ skill, index,  targetWidth}) {
             </div>
             <div className="w-full h-1 bg-gray-100 rounded-full mt-2">
                 <div
-                    className="h-1 bg-indigo-500 rounded-full"
+                    className={`h-1 rounded-full`}
                     style={{
                         width: `${width}%`,
                         transition: `width ${duration}ms ease-in-out`,
+                        backgroundColor: SKILL_COLORS[skill.name.toLowerCase()],
                     }}
                 />
             </div>
