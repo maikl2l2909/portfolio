@@ -109,6 +109,15 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
         }))
     ];
 
+    const categoriesWithSkills = Object.keys(skills || {}).map(catKey => {
+        const categoryFromMeta = technologyCategories.find(cat => cat.name.toLowerCase().replace(/\s+/g, '') === catKey);
+        return {
+            key: catKey,
+            label: categoryFromMeta?.name || catKey.charAt(0).toUpperCase() + catKey.slice(1),
+            skills: skills[catKey] || [],
+        };
+    });
+
     // Create dynamic category icons
     const dynamicCategoryIcons = {};
     technologyCategories.forEach(cat => {
@@ -160,10 +169,36 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
                             Technologies I work with daily — from database to browser.
                         </p>
                     </div>
+                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-16">
+                        {categoriesWithSkills.map(({ key, label, icon, skills }) => {
+                            return (
+                                <div>
+                                    <h3 className="flex items-center gap-2 text-lg font-medium text-foreground mb-8">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             className="lucide lucide-server w-5 h-5 text-primary" aria-hidden="true">
+                                            <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
+                                            <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
+                                            <line x1="6" x2="6.01" y1="6" y2="6"></line>
+                                            <line x1="6" x2="6.01" y1="18" y2="18"></line>
+                                        </svg>
+                                        {label}
+                                    </h3>
+                                    <div className="grid grid-cols-4 gap-6">
+                                        {Object.values(skills).map((skill, index) => (
+                                            <SkillCard key={skill.id} skill={skill} index={index} targetWidth={skill.level}/>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })}
+
+                    </div>
 
                     {/* ── Filter tabs ── */}
                     <div className="mb-10 flex flex-wrap gap-2">
-                        {categories.map(({ key, label }) => (
+                        {categories.map(({key, label}) => (
                             <button
                                 key={key}
                                 onClick={() => handleTabChange(key)}
@@ -196,7 +231,7 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
                         className="grid gap-4 sm:grid-cols-4 lg:grid-cols-3"
                     >
                         {filtered.map((skill, i) => (
-                            <SkillCard key={skill.id} skill={skill} index={i} />
+                            <SkillCard key={skill.id} skill={skill} index={i} targetWidth={skill.level}/>
                         ))}
                     </div>
 
@@ -209,7 +244,8 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
 
                     {/* ── Footer note ── */}
                     <p className="mt-14 font-mono text-[11px] text-gray-400">
-                        {allSkills.length} skills across {technologyCategories.length || Object.keys(skills).length} categories
+                        {allSkills.length} skills
+                        across {technologyCategories.length || Object.keys(skills).length} categories
                     </p>
 
                 </div>
