@@ -16,6 +16,7 @@ class SkillSeeder extends Seeder
     {
         $frontend = TechnologyCategory::where('name', 'Frontend')->first();
         $backend = TechnologyCategory::where('name', 'Backend')->first();
+        $database = TechnologyCategory::where('name', 'Database')->first();
 
         Skill::create([
             'name'        => 'Html',
@@ -126,6 +127,56 @@ class SkillSeeder extends Seeder
             'tags'        => ['React 18', 'Vite', 'Zustand'],
             'icon'        => '⬡',
             'sort_order'  => 3,
+        ]);
+
+        Skill::create([
+            'name'        => 'Mysql',
+            'technology_category_id' => $database->id,
+            'level'       => 80,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 1,
+        ]);
+
+        Skill::create([
+            'name'        => 'MariaDB',
+            'technology_category_id' => $database->id,
+            'level'       => 70,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 2,
+        ]);
+
+        Skill::create([
+            'name'        => 'Postgresql',
+            'technology_category_id' => $database->id,
+            'level'       => 70,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 3,
+        ]);
+
+        Skill::create([
+            'name'        => 'MongoDB',
+            'technology_category_id' => $database->id,
+            'level'       => 65,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 4,
+        ]);
+
+        Skill::create([
+            'name'        => 'Elasticsearch',
+            'technology_category_id' => $database->id,
+            'level'       => 30,
+            'description' => 'Component architecture, hooks, state management...',
+            'tags'        => ['React 18', 'Vite', 'Zustand'],
+            'icon'        => '⬡',
+            'sort_order'  => 5,
         ]);
     }
 }

@@ -195,59 +195,6 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
                         })}
 
                     </div>
-
-                    {/* ── Filter tabs ── */}
-                    <div className="mb-10 flex flex-wrap gap-2">
-                        {categories.map(({key, label}) => (
-                            <button
-                                key={key}
-                                onClick={() => handleTabChange(key)}
-                                className={[
-                                    'flex items-center gap-2 rounded-full border px-4 py-1.5 font-mono text-xs transition-all duration-200',
-                                    activeTab === key
-                                        ? 'border-indigo-500 bg-indigo-500 text-white'
-                                        : 'border-gray-300 bg-gray-100 text-gray-600 hover:border-indigo-500/50 hover:text-indigo-600',
-                                ].join(' ')}
-                            >
-                                {key !== 'all' && categoryIcons[key] && (
-                                    <span className="opacity-60">
-                                        {categoryIcons[key]}
-                                    </span>
-                                )}
-                                {label}
-                                <span className={[
-                                    'ml-1 rounded-full px-1.5 py-0.5 text-[9px]',
-                                    activeTab === key ? 'bg-white/20 text-white' : 'bg-gray-200 text-gray-500',
-                                ].join(' ')}>
-                                    {counts[key] ?? 0}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* ── Skills grid ── */}
-                    <div
-                        key={animKey}
-                        className="grid gap-4 sm:grid-cols-4 lg:grid-cols-3"
-                    >
-                        {filtered.map((skill, i) => (
-                            <SkillCard key={skill.id} skill={skill} index={i} targetWidth={skill.level}/>
-                        ))}
-                    </div>
-
-                    {/* ── Empty state ── */}
-                    {filtered.length === 0 && (
-                        <div className="py-20 text-center text-sm text-gray-400">
-                            No skills found in this category.
-                        </div>
-                    )}
-
-                    {/* ── Footer note ── */}
-                    <p className="mt-14 font-mono text-[11px] text-gray-400">
-                        {allSkills.length} skills
-                        across {technologyCategories.length || Object.keys(skills).length} categories
-                    </p>
-
                 </div>
             </section>
         </MainLayout>
