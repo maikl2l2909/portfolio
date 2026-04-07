@@ -17,6 +17,7 @@ class SkillSeeder extends Seeder
         $frontend = TechnologyCategory::where('name', 'Frontend')->first();
         $backend = TechnologyCategory::where('name', 'Backend')->first();
         $database = TechnologyCategory::where('name', 'Database')->first();
+        $tools = TechnologyCategory::where('name', 'Tools & Frameworks')->first();
 
         Skill::create([
             'name'        => 'Html',
@@ -177,6 +178,76 @@ class SkillSeeder extends Seeder
             'tags'        => ['React 18', 'Vite', 'Zustand'],
             'icon'        => '⬡',
             'sort_order'  => 5,
+        ]);
+
+        Skill::create([
+            'name'        => 'Laravel',
+            'technology_category_id' => $tools->id,
+            'level'       => 80,
+            'description' => 'Default...',
+            'tags'        => ['Default', 'Any'],
+            'icon'        => '⬡',
+            'sort_order'  => 1,
+        ]);
+
+        Skill::create([
+            'name'        => 'Yii2',
+            'technology_category_id' => $tools->id,
+            'level'       => 80,
+            'description' => 'Default...',
+            'tags'        => ['Default', 'Any'],
+            'icon'        => '⬡',
+            'sort_order'  => 2,
+        ]);
+
+        Skill::create([
+            'name'        => 'GraphQL',
+            'technology_category_id' => $tools->id,
+            'level'       => 70,
+            'description' => 'Default...',
+            'tags'        => ['Default', 'Any'],
+            'icon'        => '⬡',
+            'sort_order'  => 3,
+        ]);
+
+        Skill::create([
+            'name' => 'Shopify',
+            'technology_category_id' => $tools->id,
+            'level' => 70,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 4,
+        ]);
+
+        Skill::create([
+            'name' => 'Git',
+            'technology_category_id' => $tools->id,
+            'level' => 70,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 5,
+        ]);
+
+        Skill::create([
+            'name' => 'Symfony',
+            'technology_category_id' => $tools->id,
+            'level' => 30,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 6,
+        ]);
+
+        Skill::create([
+            'name' => 'Vite',
+            'technology_category_id' => $tools->id,
+            'level' => 30,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 7,
         ]);
     }
 }
