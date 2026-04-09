@@ -39,7 +39,7 @@ function SkillCard({ skill, index,  targetWidth}) {
     return (
         <div
             ref={ref}
-            className="group relative rounded-xl p-1 transition-all duration-300 w-24"
+            className="group relative rounded-xl p-1 transition-all duration-300 w-18 md:w-24"
             style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(20px)',

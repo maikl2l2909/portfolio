@@ -22,7 +22,7 @@ export const SKILL_COLORS = {
     shopify:     '#14801e',
     symfony:     '#060c12',
     vite:     'rgb(189, 52, 254)',
-    git:     '#387EB8',
+    git:     '#d80d2b',
     backend:    'currentColor',
     devops:     'currentColor',
     db:         'currentColor',
