@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessage;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ContactController extends Controller
@@ -11,10 +13,17 @@ class ContactController extends Controller
         return Inertia::render('Contact');
     }
 
-    public function send()
+    public function send(Request $request)
     {
-        // Placeholder handler: implement validation + persistence as needed.
-        return Inertia::render('Contact');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'message' => 'required|string',
+        ]);
+
+        ContactMessage::create($request->only(['name', 'email', 'message']));
+
+        return back()->with('success', 'Message sent successfully!');
     }
 }
 
