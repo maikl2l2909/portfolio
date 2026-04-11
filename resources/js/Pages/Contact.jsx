@@ -23,6 +23,7 @@ export default function Contact() {
   return (
     <MainLayout
       className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
+      mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none"
       title="Contact"
     >
       <motion.div

@@ -1,5 +1,12 @@
 @import 'tailwindcss';
 
+@layer base {
+    /* Avoid layout shift when vertical scrollbar appears/disappears between pages */
+    html {
+        scrollbar-gutter: stable;
+    }
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
