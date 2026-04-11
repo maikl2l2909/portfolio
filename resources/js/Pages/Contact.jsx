@@ -21,7 +21,10 @@ export default function Contact() {
   }
 
   return (
-    <MainLayout title="Contact">
+    <MainLayout
+      className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
+      title="Contact"
+    >
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
@@ -34,7 +37,7 @@ export default function Contact() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
         {/* Left side - Contact Form */}
         <motion.form
           onSubmit={submit}
@@ -90,7 +93,7 @@ export default function Contact() {
           </div>
 
           <button
-            className="px-5 py-2 rounded-md bg-black text-white disabled:opacity-50 hover:bg-gray-800 transition-colors"
+            className="px-5 w-full py-2 rounded-md bg-black text-white disabled:opacity-50 hover:bg-gray-800 transition-colors"
             type="submit"
             disabled={processing}
           >

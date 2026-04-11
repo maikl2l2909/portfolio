@@ -9,7 +9,7 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ];
 
-export default function MainLayout({ title = 'Portfolio', children }) {
+export default function MainLayout({ title = 'Portfolio', children, className }) {
   const { url } = usePage();
 
   return (
@@ -24,7 +24,7 @@ export default function MainLayout({ title = 'Portfolio', children }) {
         transition={{ duration: 0.22, ease: 'easeOut' }}
       >
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white/60 dark:bg-[#161615]/80 backdrop-blur-md">
-          <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <Link href="/" className="text-lg font-semibold tracking-wide">
               My Portfolio
             </Link>
@@ -52,14 +52,14 @@ export default function MainLayout({ title = 'Portfolio', children }) {
           </div>
         </header>
 
-        <div className="flex-1 mx-auto  py-6 pt-20">
+        <div className={`flex-1 mx-auto py-6 pt-20 ${className ?? ''}`}>
           <main className="border rounded-md bg-white dark:bg-[#161615] p-6 border-[#e3e3e0] dark:border-[#3E3E3A]">
             {children}
           </main>
         </div>
 
         <footer className="border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615]">
-          <div className="max-w-4xl mx-auto px-6 py-4 text-sm text-gray-600 dark:text-[#A1A09A]">
+          <div className="max-w-6xl mx-auto px-6 py-4 text-sm text-gray-600 dark:text-[#A1A09A]">
             © {new Date().getFullYear()} My Portfolio. All rights reserved.
           </div>
         </footer>
