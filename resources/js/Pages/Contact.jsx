@@ -104,7 +104,7 @@ export default function Contact() {
 
         {/* Right side - Contact Information */}
         <motion.div
-          className="border rounded-md p-6 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615]"
+          className="md p-6"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}

@@ -35,9 +35,10 @@ class ContactController extends Controller
                 $validated['message'],
             ));
         } catch (\Throwable $e) {
-            Log::error('Contact form email failed', [
-                'exception' => $e->getMessage(),
+            Log::error('Contact form email failed: '.$e->getMessage(), [
                 'recipient' => $recipient,
+                'mailer' => config('mail.default'),
+                'exception' => $e,
             ]);
 
             return back()

@@ -154,7 +154,7 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
     }
 
     return (
-        <MainLayout>
+        <MainLayout mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none">
             <Head title="Skills" />
 
             <section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20">
