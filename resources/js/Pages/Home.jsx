@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
+import CanvasParticles from 'canvasparticles-js';
 
 export default function Home({ skills = [] }) {
   const roles = ['backend developer', 'full stack developer'];
   const [activeRole, setActiveRole] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const particlesRef = useRef(null);
 
   useEffect(() => {
     const current = roles[activeRole];
@@ -36,13 +38,33 @@ export default function Home({ skills = [] }) {
     return () => clearTimeout(timer);
   }, [activeRole, isDeleting, typedText, roles]);
 
+  useEffect(() => {
+    particlesRef.current = new CanvasParticles('#home-particles', {
+      background: 'rgb(253, 253, 252)',
+      particles: {
+        color: 'hsl(206, 100%, 77%)',
+      },
+    }).start();
+
+    return () => {
+      if (particlesRef.current) {
+        particlesRef.current.stop({ clear: true });
+        particlesRef.current = null;
+      }
+    };
+  }, []);
+
   return (
     <MainLayout
       title="Home"
-      mainClassName="mx-6"
+      mainClassName="mx-0 relative overflow-hidden mx-0"
     >
+      <canvas
+        id="home-particles"
+        className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none z-1"
+      />
       <motion.div
-        className="min-h-[calc(100vh-8rem)] flex items-center"
+        className="min-h-[calc(100vh-8rem)] flex items-center relative z-10"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
