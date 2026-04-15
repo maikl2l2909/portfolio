@@ -18,4 +18,5 @@
 }
 
 /* Tailwind needs to scan JSX/TSX for class names (we render pages as .jsx). */
+@source '../**/*.jsx';
 @source '../**/*.tsx';

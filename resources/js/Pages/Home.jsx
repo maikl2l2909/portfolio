@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
 import CanvasParticles from 'canvasparticles-js';
+import Skills from './Skills';
+import Expertise from './Expertise';
+import Contact from './Contact';
 
-export default function Home({ skills = [] }) {
+export default function Home({ skills = {}, technologyCategories = [] }) {
   const roles = ['backend developer', 'full stack developer'];
   const [activeRole, setActiveRole] = useState(0);
   const [typedText, setTypedText] = useState('');
@@ -61,10 +64,12 @@ export default function Home({ skills = [] }) {
     >
       <canvas
         id="home-particles"
-        className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none z-1"
+        className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none"
       />
       <motion.div
-        className="min-h-[calc(100vh-8rem)] flex items-center relative z-10"
+        id="home"
+        data-nav-section
+        className="min-h-[calc(100vh-8rem)] flex items-center relative z-10 scroll-mt-24"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
@@ -86,6 +91,21 @@ export default function Home({ skills = [] }) {
         </div>
 
       </motion.div>
+
+      <Skills
+        embedded
+        sectionId="skills"
+        skills={skills}
+        technologyCategories={technologyCategories}
+      />
+
+      <Expertise
+        embedded
+        sectionId="expertise"
+        skills={skills}
+      />
+
+      <Contact embedded sectionId="contact" />
     </MainLayout>
   );
 }

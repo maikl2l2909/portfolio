@@ -3,10 +3,10 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
 
 const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Skills', href: '/skills' },
-  { label: 'Expertise', href: '/expertise' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Home', section: 'home', href: '/#home' },
+  { label: 'Skills', section: 'skills', href: '/#skills' },
+  { label: 'Expertise', section: 'expertise', href: '/#expertise' },
+  { label: 'Contact', section: 'contact', href: '/#contact' },
 ];
 
 const defaultMainClassName =
@@ -14,6 +14,31 @@ const defaultMainClassName =
 
 export default function MainLayout({ title = 'Portfolio', children, className, mainClassName }) {
   const { url } = usePage();
+  const pathname = (url ?? '/').split(/[?#]/)[0] || '/';
+  const [activeSection, setActiveSection] = React.useState('home');
+
+  React.useEffect(() => {
+    if (pathname !== '/') return;
+
+    const sections = Array.from(document.querySelectorAll('[data-nav-section]'));
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const current = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+        if (current?.target?.id) {
+          setActiveSection(current.target.id);
+        }
+      },
+      { threshold: [0.2, 0.5, 0.8], rootMargin: '-110px 0px -45% 0px' },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, [pathname]);
 
   return (
     <>
@@ -28,10 +53,10 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
 
             <nav className="flex flex-nowrap items-center justify-end gap-2 shrink-0">
               {navItems.map((item) => {
-                const isActive = url === item.href;
+                const isActive = pathname === '/' ? activeSection === item.section : false;
 
                 return (
-                  <Link
+                  <a
                     key={item.href}
                     href={item.href}
                     className={[
@@ -42,7 +67,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
                     ].join(' ')}
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 );
               })}
             </nav>

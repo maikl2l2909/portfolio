@@ -17,7 +17,7 @@ const CATEGORY_ICONS = {
   db: '🗄️',
 };
 
-export default function Expertise({ skills = {} }) {
+export default function Expertise({ skills = {}, embedded = false, sectionId = 'expertise' }) {
   const normalized = useMemo(() => {
     if (!skills || typeof skills !== 'object') return {};
     return Object.entries(skills).reduce((carry, [category, list]) => {
@@ -35,12 +35,9 @@ export default function Expertise({ skills = {} }) {
 
   const categories = Object.keys(normalized);
 
-  return (
-    <MainLayout>
-      <Head title="Expertise" />
-
-      <div className="min-h-screen bg-white text-gray-900">
-        <div className="max-w-6xl mx-auto px-4 py-16">
+  const content = (
+    <section id={sectionId} data-nav-section className="min-h-screen bg-white text-gray-900 scroll-mt-24">
+      <div className="max-w-6xl mx-auto px-4 py-16">
           <header className="text-center mb-16">
             <h1 className="text-4xl font-bold mb-4">My Expertise</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -101,8 +98,18 @@ export default function Expertise({ skills = {} }) {
               ))}
             </div>
           </section>
-        </div>
       </div>
+    </section>
+  );
+
+  if (embedded) {
+    return content;
+  }
+
+  return (
+    <MainLayout>
+      <Head title="Expertise" />
+      {content}
     </MainLayout>
   );
 }

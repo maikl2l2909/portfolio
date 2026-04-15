@@ -3,7 +3,7 @@ import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
 
-export default function Contact() {
+export default function Contact({ embedded = false, sectionId = 'contact' }) {
   const { props, url } = usePage();
   const { flash } = props;
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -48,12 +48,8 @@ export default function Contact() {
     });
   }
 
-  return (
-    <MainLayout
-      className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
-      mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none"
-      title="Contact"
-    >
+  const content = (
+    <section id={sectionId} data-nav-section className="scroll-mt-24">
       <motion.div
         className="mb-10 text-center"
         initial={{ opacity: 0, y: 10 }}
@@ -215,6 +211,20 @@ export default function Contact() {
           </div>
         </motion.div>
       </div>
+    </section>
+  );
+
+  if (embedded) {
+    return content;
+  }
+
+  return (
+    <MainLayout
+      className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
+      mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none"
+      title="Contact"
+    >
+      {content}
     </MainLayout>
   );
 }

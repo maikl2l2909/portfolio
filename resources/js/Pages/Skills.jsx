@@ -98,7 +98,12 @@ const FALLBACK_SKILLS = {
 // ---------------------------------------------------------------------------
 // Main Skills page
 // ---------------------------------------------------------------------------
-export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories = [] }) {
+export default function Skills({
+    skills = FALLBACK_SKILLS,
+    technologyCategories = [],
+    embedded = false,
+    sectionId = 'skills',
+}) {
     // Create dynamic categories from technologyCategories
     const dynamicCategories = [
         { key: 'all', label: 'All' },
@@ -153,12 +158,9 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
         setAnimKey(prev => prev + 1); // re-trigger stagger animation
     }
 
-    return (
-        <MainLayout mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none">
-            <Head title="Skills" />
-
-            <section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20">
-                <div className="mx-auto max-w-6xl">
+    const content = (
+        <section id={sectionId} data-nav-section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20 scroll-mt-24">
+            <div className="mx-auto max-w-6xl">
 
                     {/* ── Header ── */}
                     <div className="mb-12">
@@ -195,8 +197,18 @@ export default function Skills({ skills = FALLBACK_SKILLS, technologyCategories 
                         })}
 
                     </div>
-                </div>
-            </section>
+            </div>
+        </section>
+    );
+
+    if (embedded) {
+        return content;
+    }
+
+    return (
+        <MainLayout mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none">
+            <Head title="Skills" />
+            {content}
         </MainLayout>
     );
 }
