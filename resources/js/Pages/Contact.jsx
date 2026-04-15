@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
-  const { flash } = usePage().props;
+  const { props, url } = usePage();
+  const { flash } = props;
   const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     message: '',
   });
+  const [showForm, setShowForm] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showName, setShowName] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    setShowForm(false);
+    setShowInfo(false);
+    setShowName(false);
+    setShowEmail(false);
+    setShowMessage(false);
+    setShowButton(false);
+
+    const timers = [
+      setTimeout(() => setShowForm(true), 80),
+      setTimeout(() => setShowInfo(true), 220),
+      setTimeout(() => setShowName(true), 260),
+      setTimeout(() => setShowEmail(true), 420),
+      setTimeout(() => setShowMessage(true), 580),
+      setTimeout(() => setShowButton(true), 740),
+    ];
+
+    return () => timers.forEach(clearTimeout);
+  }, [url]);
 
   function submit(e) {
     e.preventDefault();
@@ -42,12 +69,13 @@ export default function Contact() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
         {/* Left side - Contact Form */}
         <motion.form
+          key={url}
           onSubmit={submit}
-          className="border rounded-2xl p-6 md:p-8 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] shadow-sm"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className={[
+            'border rounded-2xl p-6 md:p-8 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] shadow-sm',
+            'transition-all duration-700 ease-out',
+            showForm ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 -translate-x-16 scale-[0.98]',
+          ].join(' ')}
         >
           {flash?.success && (
             <div className="mb-5 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">
@@ -55,7 +83,12 @@ export default function Contact() {
             </div>
           )}
 
-          <div className="mb-5">
+          <div
+            className={[
+              'mb-5 transition-all duration-500 ease-out',
+              showName ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+            ].join(' ')}
+          >
             <label className="block text-sm mb-2 font-medium">Name</label>
             <input
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
@@ -70,7 +103,12 @@ export default function Contact() {
             )}
           </div>
 
-          <div className="mb-5">
+          <div
+            className={[
+              'mb-5 transition-all duration-500 ease-out',
+              showEmail ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+            ].join(' ')}
+          >
             <label className="block text-sm mb-2 font-medium">Email</label>
             <input
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
@@ -85,7 +123,12 @@ export default function Contact() {
             )}
           </div>
 
-          <div className="mb-5">
+          <div
+            className={[
+              'mb-5 transition-all duration-500 ease-out',
+              showMessage ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+            ].join(' ')}
+          >
             <label className="block text-sm mb-2 font-medium">Message</label>
             <textarea
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
@@ -104,6 +147,11 @@ export default function Contact() {
             className="px-5 w-full py-3 rounded-xl bg-black text-white disabled:opacity-50 hover:bg-gray-800 transition-colors font-medium"
             type="submit"
             disabled={processing}
+            style={{
+              opacity: showButton ? 1 : 0,
+              transform: showButton ? 'translateX(0)' : 'translateX(-32px)',
+              transition: 'opacity 500ms ease-out, transform 500ms ease-out',
+            }}
           >
             {processing ? 'Sending...' : 'Send Message'}
           </button>
@@ -111,11 +159,12 @@ export default function Contact() {
 
         {/* Right side - Contact Information */}
         <motion.div
-          className="p-6 md:p-8 rounded-2xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-gradient-to-br from-white to-[#f7f7f6] dark:from-[#161615] dark:to-[#10100f] shadow-sm"
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.3, ease: 'easeOut', delay: 0.1 }}
+          className={[
+            'p-6 md:p-8 rounded-2xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-gradient-to-br from-white to-[#f7f7f6] dark:from-[#161615] dark:to-[#10100f] shadow-sm',
+            'transition-all duration-700 ease-out',
+            showInfo ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-16 scale-[0.98]',
+          ].join(' ')}
+          inherit={false}
         >
           <h3 className="text-2xl font-semibold mb-2">Contact Information</h3>
           <p className="text-sm text-gray-600 dark:text-[#A1A09A] mb-6">
