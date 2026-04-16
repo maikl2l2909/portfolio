@@ -174,7 +174,7 @@ export default function Skills({
                     <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-16">
                         {categoriesWithSkills.map(({ key, label, icon, skills }) => {
                             return (
-                                <div>
+                                <div key={key}>
                                     <h3 className="flex items-center gap-2 text-lg font-medium text-foreground mb-8">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"

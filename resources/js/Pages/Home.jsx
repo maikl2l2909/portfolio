@@ -5,8 +5,9 @@ import CanvasParticles from 'canvasparticles-js';
 import Skills from './Skills';
 import Expertise from './Expertise';
 import Contact from './Contact';
+import Experience from "./Experience.jsx";
 
-export default function Home({ skills = {}, technologyCategories = [] }) {
+export default function Home({ skills = {}, technologyCategories = [] , experiences = {}}) {
   const roles = ['backend developer', 'full stack developer'];
   const [activeRole, setActiveRole] = useState(0);
   const [typedText, setTypedText] = useState('');
@@ -99,10 +100,10 @@ export default function Home({ skills = {}, technologyCategories = [] }) {
         technologyCategories={technologyCategories}
       />
 
-      <Expertise
+      <Experience
         embedded
-        sectionId="expertise"
-        skills={skills}
+        sectionId="experience"
+        experiences={experiences}
       />
 
       <Contact embedded sectionId="contact" />

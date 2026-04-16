@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experience;
 use App\Models\Skill;
 use App\Models\TechnologyCategory;
 use Illuminate\Support\Facades\Schema;
@@ -14,22 +15,23 @@ class HomeController extends Controller
         $skillsByCategory = collect();
         $technologyCategories = collect();
 
-        if (Schema::hasTable('skills')) {
-            $skillsByCategory = Skill::with('technologyCategory')
-                ->orderBy('sort_order')
-                ->get()
-                ->groupBy(function ($skill) {
-                    return $skill->technologyCategory?->name ?? 'Uncategorized';
-                });
-        }
+        $skillsByCategory = Skill::with('technologyCategory')
+            ->orderBy('sort_order')
+            ->get()
+            ->groupBy(function ($skill) {
+                return $skill->technologyCategory?->name ?? 'Uncategorized';
+            });
 
-        if (Schema::hasTable('technology_categories')) {
-            $technologyCategories = TechnologyCategory::orderBy('sort_order')->get();
-        }
+        $experiences = Experience::with('skill')
+            ->orderByDesc('start_work')
+            ->get();
+
+        $technologyCategories = TechnologyCategory::orderBy('sort_order')->get();
 
         return Inertia::render('Home', [
             'skills' => $skillsByCategory,
             'technologyCategories' => $technologyCategories,
+            'experiences' => $experiences
         ]);
     }
 }
