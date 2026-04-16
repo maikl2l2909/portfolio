@@ -64,7 +64,7 @@ export default function Home({ skills = {}, technologyCategories = [] }) {
     >
       <canvas
         id="home-particles"
-        className="absolute inset-0 w-full h-full rounded-2xl pointer-events-none"
+        className="absolute top-0 left-0 right-0 h-[calc(100vh-4rem)] w-full pointer-events-none border-b-1"
       />
       <motion.div
         id="home"
