@@ -1,42 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
 
 export default function Contact({ embedded = false, sectionId = 'contact' }) {
-  const { props, url } = usePage();
+  const { props } = usePage();
   const { flash } = props;
   const { data, setData, post, processing, errors, reset } = useForm({
     name: '',
     email: '',
     message: '',
   });
-  const [showForm, setShowForm] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
-  const [showName, setShowName] = useState(false);
-  const [showEmail, setShowEmail] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setShowForm(false);
-    setShowInfo(false);
-    setShowName(false);
-    setShowEmail(false);
-    setShowMessage(false);
-    setShowButton(false);
+    const node = sectionRef.current;
+    if (!node) return undefined;
 
-    const timers = [
-      setTimeout(() => setShowForm(true), 80),
-      setTimeout(() => setShowInfo(true), 220),
-      setTimeout(() => setShowName(true), 260),
-      setTimeout(() => setShowEmail(true), 420),
-      setTimeout(() => setShowMessage(true), 580),
-      setTimeout(() => setShowButton(true), 740),
-    ];
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
 
-    return () => timers.forEach(clearTimeout);
-  }, [url]);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
 
   function submit(e) {
     e.preventDefault();
@@ -49,7 +43,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
   }
 
   const content = (
-    <section id={sectionId} data-nav-section className="scroll-mt-24">
+    <section id={sectionId} data-nav-section className="scroll-mt-24" ref={sectionRef}>
       <motion.div
         className="mb-10 text-center"
         initial={{ opacity: 0, y: 10 }}
@@ -65,12 +59,11 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 xl:gap-16">
         {/* Left side - Contact Form */}
         <motion.form
-          key={url}
           onSubmit={submit}
           className={[
             'border rounded-2xl p-6 md:p-8 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] shadow-sm',
             'transition-all duration-700 ease-out',
-            showForm ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 -translate-x-16 scale-[0.98]',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
           ].join(' ')}
         >
           {flash?.success && (
@@ -79,11 +72,12 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             </div>
           )}
 
-          <div
+          <motion.div
             className={[
-              'mb-5 transition-all duration-500 ease-out',
-              showName ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+              'mb-5 transition-all duration-700 ease-out',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
             ].join(' ')}
+            style={{ transitionDelay: '120ms' }}
           >
             <label className="block text-sm mb-2 font-medium">Name</label>
             <input
@@ -97,13 +91,14 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             {errors.name && (
               <div className="text-red-600 text-sm mt-1">{errors.name}</div>
             )}
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             className={[
-              'mb-5 transition-all duration-500 ease-out',
-              showEmail ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+              'mb-5 transition-all duration-700 ease-out',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
             ].join(' ')}
+            style={{ transitionDelay: '220ms' }}
           >
             <label className="block text-sm mb-2 font-medium">Email</label>
             <input
@@ -117,13 +112,14 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             {errors.email && (
               <div className="text-red-600 text-sm mt-1">{errors.email}</div>
             )}
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
             className={[
-              'mb-5 transition-all duration-500 ease-out',
-              showMessage ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8',
+              'mb-5 transition-all duration-700 ease-out',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
             ].join(' ')}
+            style={{ transitionDelay: '320ms' }}
           >
             <label className="block text-sm mb-2 font-medium">Message</label>
             <textarea
@@ -137,20 +133,19 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             {errors.message && (
               <div className="text-red-600 text-sm mt-1">{errors.message}</div>
             )}
-          </div>
+          </motion.div>
 
-          <button
-            className="px-5 w-full py-3 rounded-xl bg-black text-white disabled:opacity-50 hover:bg-gray-800 transition-colors font-medium"
+          <motion.button
             type="submit"
             disabled={processing}
-            style={{
-              opacity: showButton ? 1 : 0,
-              transform: showButton ? 'translateX(0)' : 'translateX(-32px)',
-              transition: 'opacity 500ms ease-out, transform 500ms ease-out',
-            }}
+            style={{ transitionDelay: '420ms' }}
+            className={[
+              'px-5 w-full py-3 rounded-xl bg-black text-white disabled:opacity-50 hover:bg-gray-800 transition-all duration-700 ease-out font-medium',
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
+            ].join(' ')}
           >
             {processing ? 'Sending...' : 'Send Message'}
-          </button>
+          </motion.button>
         </motion.form>
 
         {/* Right side - Contact Information */}
@@ -158,9 +153,9 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
           className={[
             'p-6 md:p-8 rounded-2xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-gradient-to-br from-white to-[#f7f7f6] dark:from-[#161615] dark:to-[#10100f] shadow-sm',
             'transition-all duration-700 ease-out',
-            showInfo ? 'opacity-100 translate-x-0 scale-100' : 'opacity-0 translate-x-16 scale-[0.98]',
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
           ].join(' ')}
-          inherit={false}
+          style={{ transitionDelay: '150ms' }}
         >
           <h3 className="text-2xl font-semibold mb-2">Contact Information</h3>
           <p className="text-sm text-gray-600 dark:text-[#A1A09A] mb-6">
