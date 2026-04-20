@@ -161,8 +161,6 @@ export default function Skills({
     const content = (
         <section id={sectionId} data-nav-section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20 scroll-mt-24">
             <div className="mx-auto">
-
-                    {/* ── Header ── */}
                     <div className="mb-12">
                         <h1 className="mb-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
                             My skills, applied.
@@ -171,7 +169,7 @@ export default function Skills({
                             Technologies I work with daily — from database to browser.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-2 md:gap-6 gap-x-16 gap-y-16">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-2 md:gap-4 gap-x-8 gap-y-10">
                         {categoriesWithSkills.map(({ key, label, icon, skills }) => {
                             return (
                                 <div key={key}>
