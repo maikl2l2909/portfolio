@@ -160,7 +160,7 @@ export default function Skills({
 
     const content = (
         <section id={sectionId} data-nav-section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20 scroll-mt-24">
-            <div className="mx-auto max-w-6xl">
+            <div className="mx-auto">
 
                     {/* ── Header ── */}
                     <div className="mb-12">
@@ -171,7 +171,7 @@ export default function Skills({
                             Technologies I work with daily — from database to browser.
                         </p>
                     </div>
-                    <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-16 gap-y-16">
+                    <div className="grid md:grid-cols-2 xl:grid-cols-2 md:gap-6 gap-x-16 gap-y-16">
                         {categoriesWithSkills.map(({ key, label, icon, skills }) => {
                             return (
                                 <div key={key}>
@@ -187,7 +187,7 @@ export default function Skills({
                                         </svg>
                                         {label}
                                     </h3>
-                                    <div className="grid grid-cols-4 gap-6">
+                                    <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
                                         {Object.values(skills).map((skill, index) => (
                                             <SkillCard key={skill.id} skill={skill} index={index} targetWidth={skill.level}/>
                                         ))}

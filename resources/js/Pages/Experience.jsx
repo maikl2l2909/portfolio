@@ -16,7 +16,7 @@ export default function Experience({ experiences = [] }) {
   };
 
   return (
-    <MainLayout title="Experience">
+    <section>
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
@@ -138,7 +138,7 @@ export default function Experience({ experiences = [] }) {
           </div>
         )}
       </motion.section>
-    </MainLayout>
+    </section>
   );
 }
 
