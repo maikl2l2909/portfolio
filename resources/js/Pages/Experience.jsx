@@ -1,8 +1,10 @@
-import React from 'react';
-import MainLayout from '../Layouts/MainLayout';
+import React, {useEffect, useRef, useState} from 'react';
 import { motion } from 'framer-motion';
 
 export default function Experience({ experiences = [] }) {
+
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
   const formatMonthYear = (value) => {
     if (!value) return '';
 
@@ -15,8 +17,26 @@ export default function Experience({ experiences = [] }) {
     });
   };
 
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section>
+    <section ref={sectionRef}>
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
@@ -44,11 +64,10 @@ export default function Experience({ experiences = [] }) {
           <div className="max-w-6xl mx-auto px-4 relative">
             <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-red-600 via-red-950 to-transparent opacity-30"></div>
             <div className="flex flex-col gap-16 lg:gap-24">
-
               {experiences.map((experience, number) => (
                 <div
                   key={experience.id}
-                  className="relative"
+                  className={`relative`}
                 >
                   <div
                     style={{
@@ -58,7 +77,7 @@ export default function Experience({ experiences = [] }) {
                       transform: 'translate(0px, 0px)',
                       opacity: 1
                     }}>
-                    <div className={`flex flex-col md:flex-row items-center gap-8 md:flex-row${number % 2 === 0 && '-reverse'}`}>
+                    <div className={`flex flex-col md:flex-row items-center gap-8 md:flex-row${number % 2 === 0 ? '-reverse' : ''} transition-all duration-700 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                       <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 w-10 h-10 rounded-xl bg-[#050505] border-2 border-red-600 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" className="text-red-600 w-5 h-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                           <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path>
