@@ -118,7 +118,7 @@ export default function Experience({ experiences = [] }) {
       </motion.div>
 
       <motion.section
-        className="border rounded-md p-4 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615]"
+        className=" bg-white dark:bg-[#161615]"
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}

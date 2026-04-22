@@ -46,7 +46,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
     <section
       id={sectionId}
       data-nav-section
-      className="scroll-mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      className="mt-14 scroll-mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       ref={sectionRef}
     >
       <motion.div
