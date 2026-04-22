@@ -101,7 +101,7 @@ export default function Experience({ experiences = [] }) {
   };
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
