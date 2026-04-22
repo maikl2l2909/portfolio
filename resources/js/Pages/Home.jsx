@@ -3,7 +3,6 @@ import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
 import CanvasParticles from 'canvasparticles-js';
 import Skills from './Skills';
-import Expertise from './Expertise';
 import Contact from './Contact';
 import Experience from "./Experience.jsx";
 
@@ -43,10 +42,10 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
   }, [activeRole, isDeleting, typedText, roles]);
 
   useEffect(() => {
-    particlesRef.current = new CanvasParticles('#home-particles', {
-      background: 'rgb(253, 253, 252)',
+    particlesRef.current = new CanvasParticles('#showcase-coloring', {
+      background: 'rgb(255,255,255)',
       particles: {
-        color: 'hsl(206, 100%, 77%)',
+        color: 'hsl(244,7%,37%)',
       },
     }).start();
 
@@ -64,8 +63,8 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
       mainClassName="mx-0 relative overflow-hidden mx-0"
     >
       <canvas
-        id="home-particles"
-        className="absolute top-0 left-0 right-0 h-[calc(100vh-4rem)] w-full pointer-events-none border-b-1"
+        id="showcase-coloring"
+        className="absolute top-0 left-0 right-0 h-[calc(100vh-4rem)] w-full pointer-events-none border-b border-[#e3e3e0]"
       />
       <motion.div
         id="home"

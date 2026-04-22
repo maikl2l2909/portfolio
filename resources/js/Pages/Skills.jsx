@@ -160,7 +160,7 @@ export default function Skills({
 
     const content = (
         <section id={sectionId} data-nav-section className="min-h-screen bg-white px-0 md:px-6 py-20 md:px-12 lg:px-20 scroll-mt-24">
-            <div className="mx-auto max-w-7xl">
+            <div className="mt-24 mx-auto max-w-7xl">
                     <div className="mb-12">
                         <h1 className="mb-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
                             My skills, applied.
@@ -185,7 +185,7 @@ export default function Skills({
                                         </svg>
                                         {label}
                                     </h3>
-                                    <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+                                    <div className="grid grid-cols-4 xl:grid-cols-6 gap-2">
                                         {Object.values(skills).map((skill, index) => (
                                             <SkillCard key={skill.id} skill={skill} index={index} targetWidth={skill.level}/>
                                         ))}
