@@ -43,7 +43,12 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
   }
 
   const content = (
-    <section id={sectionId} data-nav-section className="scroll-mt-24" ref={sectionRef}>
+    <section
+      id={sectionId}
+      data-nav-section
+      className="scroll-mt-24 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      ref={sectionRef}
+    >
       <motion.div
         className="mb-10 text-center"
         initial={{ opacity: 0, y: 10 }}

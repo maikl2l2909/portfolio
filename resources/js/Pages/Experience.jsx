@@ -104,7 +104,7 @@ export default function Experience({ experiences = [] }) {
   };
 
   return (
-    <section>
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
@@ -129,7 +129,7 @@ export default function Experience({ experiences = [] }) {
             No experience records yet. Add some in the database to show your timeline.
           </p>
         ) : (
-          <div className="max-w-6xl mx-auto px-4 relative">
+          <div className="relative">
             <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-red-600 via-red-950 to-transparent opacity-30"></div>
             <div className="flex flex-col gap-16 lg:gap-24">
               {experiences.map((experience, number) => (
