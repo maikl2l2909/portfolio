@@ -33,8 +33,8 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
     >
       <div>
         <div className={`flex flex-col md:flex-row items-center gap-8 md:flex-row${number % 2 === 0 ? '-reverse' : ''}`}>
-          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 w-10 h-10 rounded-xl bg-[#050505] border-2 border-red-600 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
-            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-red-600 w-5 h-5" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 w-8 h-8 rounded-full bg-white border-2 border-red-600 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
+            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-red-600 w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path>
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"></path>
             </svg>
@@ -52,7 +52,7 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
           </div>
 
           <div className="w-full md:w-1/2 md:text-left">
-            <div className="group relative p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-red-600/50 transition-all duration-500 shadow-xl hover:shadow-red-600/10">
+            <div className="group relative p-8 rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-md  transition-all duration-500 shadow-xl">
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col gap-1"><h3 className="text-2xl font-bold text-foreground to-slate-400">
                   {experience.title}
@@ -72,16 +72,13 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
                 </div>
                 <div className="space-y-3 mt-2">
                   <div className="flex gap-3 items-start group/item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right w-4 h-4 text-red-600 mt-1 shrink-0 group-hover/item:translate-x-1 transition-transform">
-                      <path d="m9 18 6-6-6-6"></path>
-                    </svg>
-                    <p className="text-slate-400 text-sm lg:text-base leading-relaxed group-hover/item:text-slate-200 transition-colors">
+                    <p className="text-slate-400 text-sm lg:text-base leading-relaxed transition-colors">
                       {experience.description}
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-600/20 via-transparent to-red-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-600/20 via-transparent to-red-900/20 opacity-0 transition-opacity duration-500 pointer-events-none"></div>
             </div>
           </div>
         </div>
