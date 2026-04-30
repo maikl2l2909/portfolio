@@ -16,7 +16,7 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
           observer.disconnect();
         }
       },
-      { threshold: 0.25, rootMargin: '0px 0px -10% 0px' },
+      { threshold: 0.25, rootMargin: '0px 0px -20% 0px' },
     );
 
     observer.observe(node);
@@ -39,7 +39,7 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"></path>
             </svg>
           </div>
-          <div className="w-full md:w-1/2 flex md:justify-end">
+          <div className={`w-full md:w-1/2 flex md:justify${number % 2 === 0 ? '-start' : '-end'}`}>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-slate-400 text-sm font-medium">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar w-4 h-4 text-red-600">
                 <path d="M8 2v4"></path>
