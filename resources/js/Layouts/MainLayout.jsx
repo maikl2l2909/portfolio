@@ -60,10 +60,10 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
                     key={item.href}
                     href={item.href}
                     className={[
-                      'inline-flex items-center justify-center px-3 py-2 rounded-md text-sm border transition-colors whitespace-nowrap',
+                      'inline-flex items-center justify-center px-3 py-2 text-sm whitespace-nowrap bg-transparent border-b-2 border-transparent transition-colors',
                       isActive
-                        ? 'bg-black text-white border-black dark:bg-[#eeeeec] dark:text-[#0a0a0a] dark:border-[#eeeeec]'
-                        : 'bg-white dark:bg-[#161615] text-[#1b1b18] dark:text-[#EDEDEC] border-[#e3e3e0] dark:border-[#3E3E3A] hover:border-[#1915014a]',
+                        ? 'text-[#1b1b18] dark:text-[#EDEDEC] border-[#1b1b18] dark:border-[#EDEDEC] underline underline-offset-4'
+                        : 'text-[#1b1b18] dark:text-[#EDEDEC] hover:text-black dark:hover:text-white',
                     ].join(' ')}
                   >
                     {item.label}
