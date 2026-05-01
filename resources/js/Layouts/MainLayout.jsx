@@ -18,6 +18,12 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
   const pathname = (url ?? '/').split(/[?#]/)[0] || '/';
   const [activeSection, setActiveSection] = React.useState('home');
   const { language, setLanguage, t } = useLanguage();
+  const languageCodes = Object.keys(SUPPORTED_LANGUAGES);
+  const isEnglish = language === 'en';
+  const nextLanguage = isEnglish ? 'pl' : 'en';
+  const currentLanguageLabel = SUPPORTED_LANGUAGES[language] ?? language.toUpperCase();
+  const nextLanguageLabel =
+    SUPPORTED_LANGUAGES[nextLanguage] ?? languageCodes.find((code) => code !== language)?.toUpperCase() ?? 'EN';
 
   React.useEffect(() => {
     if (pathname !== '/') return;
@@ -72,27 +78,23 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
                   </a>
                 );
               })}
-              <div className="ml-2 inline-flex items-center rounded-md border border-[#e3e3e0] dark:border-[#3E3E3A] overflow-hidden">
-                {Object.entries(SUPPORTED_LANGUAGES).map(([code, label]) => {
-                  const active = language === code;
-                  return (
-                    <button
-                      key={code}
-                      type="button"
-                      aria-label={`${t('common.language')}: ${label}`}
-                      onClick={() => setLanguage(code)}
-                      className={[
-                        'px-2.5 py-1.5 text-xs font-semibold transition-colors',
-                        active
-                          ? 'bg-[#1b1b18] text-white dark:bg-[#EDEDEC] dark:text-[#0a0a0a]'
-                          : 'bg-transparent text-[#1b1b18] dark:text-[#EDEDEC] hover:bg-black/5 dark:hover:bg-white/10',
-                      ].join(' ')}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
+              <button
+                type="button"
+                aria-label={`Switch to ${nextLanguageLabel}`}
+                onClick={() => setLanguage(nextLanguage)}
+                className="ml-2 isolate relative w-14 h-7 rounded-full cursor-pointer bg-stone-300 dark:bg-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              >
+                <span
+                  className={[
+                    'absolute top-1 left-0 w-5 h-5 rounded-full overflow-hidden',
+                    'transition-transform duration-300 ease-in-out bg-white dark:bg-[#161615]',
+                    'flex items-center justify-center text-[10px] font-bold text-[#1b1b18] dark:text-[#EDEDEC]',
+                    isEnglish ? 'translate-x-1' : 'translate-x-8',
+                  ].join(' ')}
+                >
+                  {currentLanguageLabel}
+                </span>
+              </button>
             </nav>
           </div>
         </header>
