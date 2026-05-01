@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n';
 
-function ExperienceItem({ experience, number, formatMonthYear }) {
+function ExperienceItem({ experience, number, formatMonthYear, presentLabel }) {
   const itemRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -47,7 +48,7 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
                 <rect width="18" height="18" x="3" y="4" rx="2"></rect>
                 <path d="M3 10h18"></path>
               </svg>
-              {formatMonthYear(experience.start_work)} - {experience.end_work ? formatMonthYear(experience.end_work) : 'Present'}
+              {formatMonthYear(experience.start_work)} - {experience.end_work ? formatMonthYear(experience.end_work) : presentLabel}
             </div>
           </div>
 
@@ -87,30 +88,36 @@ function ExperienceItem({ experience, number, formatMonthYear }) {
   );
 }
 
-export default function Experience({ experiences = [] }) {
+export default function Experience({ experiences = [], sectionId, embedded = false }) {
+  const { language, t } = useLanguage();
+
   const formatMonthYear = (value) => {
     if (!value) return '';
 
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return value;
 
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(language === 'pl' ? 'pl-PL' : 'en-US', {
       month: 'short',
       year: 'numeric',
     });
   };
 
   return (
-    <section className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10">
+    <section
+      id={sectionId}
+      data-nav-section={sectionId ? true : undefined}
+      className={`w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 ${embedded ? 'scroll-mt-24' : ''}`}
+    >
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
-        <h2 className="text-3xl font-semibold mb-2">Experience</h2>
+        <h2 className="text-3xl font-semibold mb-2">{t('experience.title')}</h2>
         <p className="text-gray-600 dark:text-[#A1A09A]">
-          Add your professional experience timeline here.
+          {t('experience.subtitle')}
         </p>
       </motion.div>
 
@@ -123,7 +130,7 @@ export default function Experience({ experiences = [] }) {
       >
         {experiences.length === 0 ? (
           <p className="text-gray-700 dark:text-[#A1A09A]">
-            No experience records yet. Add some in the database to show your timeline.
+            {t('experience.emptyState')}
           </p>
         ) : (
           <div className="relative">
@@ -135,6 +142,7 @@ export default function Experience({ experiences = [] }) {
                   experience={experience}
                   number={number}
                   formatMonthYear={formatMonthYear}
+                  presentLabel={t('common.present')}
                 />
               ))}
             </div>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { motion } from 'framer-motion';
+import { SUPPORTED_LANGUAGES, useLanguage } from '../i18n';
 
 const navItems = [
-  { label: 'Home', section: 'home', href: '/#home' },
-  { label: 'Skills', section: 'skills', href: '/#skills' },
-  { label: 'Experience', section: 'experience', href: '/#experience' },
-  { label: 'Contact', section: 'contact', href: '/#contact' },
+  { labelKey: 'nav.home', section: 'home', href: '/#home' },
+  { labelKey: 'nav.skills', section: 'skills', href: '/#skills' },
+  { labelKey: 'nav.experience', section: 'experience', href: '/#experience' },
+  { labelKey: 'nav.contact', section: 'contact', href: '/#contact' },
 ];
 
 const defaultMainClassName =
@@ -16,6 +17,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
   const { url } = usePage();
   const pathname = (url ?? '/').split(/[?#]/)[0] || '/';
   const [activeSection, setActiveSection] = React.useState('home');
+  const { language, setLanguage, t } = useLanguage();
 
   React.useEffect(() => {
     if (pathname !== '/') return;
@@ -48,7 +50,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white/60 dark:bg-[#161615]/80 backdrop-blur-md shadow-md">
           <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
             <Link href="/" className="text-lg font-semibold tracking-wide shrink-0">
-              My Portfolio
+              {t('nav.portfolioTitle')}
             </Link>
 
             <nav className="flex flex-nowrap items-center justify-end gap-2 shrink-0">
@@ -60,16 +62,37 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
                     key={item.href}
                     href={item.href}
                     className={[
-                      'inline-flex items-center justify-center px-3 py-2 text-sm whitespace-nowrap bg-transparent border-b-2 border-transparent transition-colors',
+                      'inline-flex items-center justify-center px-3 py-2 text-md whitespace-nowrap bg-transparent border-b-2 border-transparent transition-colors',
                       isActive
                         ? 'text-[#1b1b18] dark:text-[#EDEDEC] border-[#1b1b18] dark:border-[#EDEDEC] underline underline-offset-4'
                         : 'text-[#1b1b18] dark:text-[#EDEDEC] hover:text-black dark:hover:text-white',
                     ].join(' ')}
                   >
-                    {item.label}
+                    {t(item.labelKey)}
                   </a>
                 );
               })}
+              <div className="ml-2 inline-flex items-center rounded-md border border-[#e3e3e0] dark:border-[#3E3E3A] overflow-hidden">
+                {Object.entries(SUPPORTED_LANGUAGES).map(([code, label]) => {
+                  const active = language === code;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      aria-label={`${t('common.language')}: ${label}`}
+                      onClick={() => setLanguage(code)}
+                      className={[
+                        'px-2.5 py-1.5 text-xs font-semibold transition-colors',
+                        active
+                          ? 'bg-[#1b1b18] text-white dark:bg-[#EDEDEC] dark:text-[#0a0a0a]'
+                          : 'bg-transparent text-[#1b1b18] dark:text-[#EDEDEC] hover:bg-black/5 dark:hover:bg-white/10',
+                      ].join(' ')}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
             </nav>
           </div>
         </header>
@@ -89,7 +112,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
 
           <footer className="border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] mt-auto">
             <div className="max-w-6xl mx-auto px-6 py-4 text-sm text-gray-600 dark:text-[#A1A09A]">
-              © {new Date().getFullYear()} My Portfolio. All rights reserved.
+              © {new Date().getFullYear()} {t('nav.portfolioTitle')}. {t('footer.rightsReserved')}
             </div>
           </footer>
         </motion.div>

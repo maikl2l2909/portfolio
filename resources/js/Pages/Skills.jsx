@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 import { SKILL_ICONS } from './Components/SkillIcons';
 import { SkillCard } from './Components/SkillCard.jsx'
+import { useLanguage } from '../i18n';
 
 // ---------------------------------------------------------------------------
 // Level badge config
@@ -104,6 +105,7 @@ export default function Skills({
     embedded = false,
     sectionId = 'skills',
 }) {
+    const { t } = useLanguage();
     // Create dynamic categories from technologyCategories
     const dynamicCategories = [
         { key: 'all', label: 'All' },
@@ -163,10 +165,10 @@ export default function Skills({
             <div className="mt-24 mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-10">
                     <div className="mb-12">
                         <h1 className="mb-3 text-3xl font-semibold tracking-tight text-black md:text-4xl">
-                            My skills, applied.
+                            {t('skills.title')}
                         </h1>
                         <p className="text-sm font-light text-gray-600">
-                            Technologies I work with daily — from database to browser.
+                            {t('skills.subtitle')}
                         </p>
                     </div>
                     <div className="flex flex-wrap lg:gap-x-12 gap-6">
@@ -205,7 +207,7 @@ export default function Skills({
 
     return (
         <MainLayout mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none">
-            <Head title="Skills" />
+            <Head title={t('skills.pageTitle')} />
             {content}
         </MainLayout>
     );

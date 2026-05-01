@@ -1,19 +1,22 @@
 import React from 'react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n';
 
 export default function Resume() {
+  const { t } = useLanguage();
+
   return (
-    <MainLayout title="Resume">
+    <MainLayout title={t('resume.pageTitle')}>
       <motion.div
         className="mb-6"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
-        <h2 className="text-3xl font-semibold mb-2">Resume</h2>
+        <h2 className="text-3xl font-semibold mb-2">{t('resume.title')}</h2>
         <p className="text-gray-600 dark:text-[#A1A09A]">
-          Add your resume content or download link here.
+          {t('resume.subtitle')}
         </p>
       </motion.div>
 
@@ -25,7 +28,7 @@ export default function Resume() {
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
         <p className="text-gray-700 dark:text-[#EDEDEC]">
-          Placeholder resume section.
+          {t('resume.placeholder')}
         </p>
       </motion.section>
     </MainLayout>

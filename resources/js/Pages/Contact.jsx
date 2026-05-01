@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n';
 
 export default function Contact({ embedded = false, sectionId = 'contact' }) {
+  const { t } = useLanguage();
   const { props } = usePage();
   const { flash } = props;
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -55,9 +57,9 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.25, ease: 'easeOut' }}
       >
-        <h2 className="text-4xl font-semibold tracking-tight mb-3">Let&apos;s Work Together</h2>
+        <h2 className="text-4xl font-semibold tracking-tight mb-3">{t('contact.title')}</h2>
         <p className="text-gray-600 dark:text-[#A1A09A] max-w-2xl mx-auto">
-          Have an idea, role, or project in mind? Send me a message and I will get back to you soon.
+          {t('contact.subtitle')}
         </p>
       </motion.div>
 
@@ -84,7 +86,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             ].join(' ')}
             style={{ transitionDelay: '120ms' }}
           >
-            <label className="block text-sm mb-2 font-medium">Name</label>
+            <label className="block text-sm mb-2 font-medium">{t('contact.name')}</label>
             <input
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
               value={data.name}
@@ -105,7 +107,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             ].join(' ')}
             style={{ transitionDelay: '220ms' }}
           >
-            <label className="block text-sm mb-2 font-medium">Email</label>
+            <label className="block text-sm mb-2 font-medium">{t('contact.email')}</label>
             <input
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
               value={data.email}
@@ -126,7 +128,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             ].join(' ')}
             style={{ transitionDelay: '320ms' }}
           >
-            <label className="block text-sm mb-2 font-medium">Message</label>
+            <label className="block text-sm mb-2 font-medium">{t('contact.message')}</label>
             <textarea
               className="w-full border rounded-xl px-4 py-3 border-[#e3e3e0] dark:border-[#3E3E3A] bg-[#FDFDFC] dark:bg-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-[#eeeeec] transition-shadow"
               value={data.message}
@@ -149,7 +151,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8',
             ].join(' ')}
           >
-            {processing ? 'Sending...' : 'Send Message'}
+            {processing ? t('contact.sending') : t('contact.sendMessage')}
           </motion.button>
         </motion.form>
 
@@ -162,9 +164,9 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
           ].join(' ')}
           style={{ transitionDelay: '150ms' }}
         >
-          <h3 className="text-2xl font-semibold mb-2">Contact Information</h3>
+          <h3 className="text-2xl font-semibold mb-2">{t('contact.contactInformation')}</h3>
           <p className="text-sm text-gray-600 dark:text-[#A1A09A] mb-6">
-            Prefer direct communication? Use any of the channels below.
+            {t('contact.directCommunication')}
           </p>
 
           <div className="space-y-5">
@@ -175,7 +177,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">Email</p>
+                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">{t('contact.email')}</p>
                 <p className="font-medium">maikl2l2909@gmail.com</p>
               </div>
             </div>
@@ -187,7 +189,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">Phone</p>
+                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">{t('contact.phone')}</p>
                 <p className="font-medium">+516828838</p>
               </div>
             </div>
@@ -200,14 +202,14 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
                 </svg>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">Location</p>
-                <p className="font-medium">Poland, Krakow</p>
+                <p className="text-sm text-gray-600 dark:text-[#A1A09A]">{t('contact.location')}</p>
+                <p className="font-medium">{t('contact.locationValue')}</p>
               </div>
             </div>
           </div>
 
           <div className="mt-8 rounded-xl border border-[#e3e3e0] dark:border-[#3E3E3A] px-4 py-3 text-sm text-gray-600 dark:text-[#A1A09A]">
-            Usually replies within 24 hours.
+            {t('contact.replyTime')}
           </div>
         </motion.div>
       </div>
@@ -222,7 +224,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
     <MainLayout
       className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8"
       mainClassName="border-0 bg-transparent dark:bg-transparent p-0 shadow-none rounded-none"
-      title="Contact"
+      title={t('contact.pageTitle')}
     >
       {content}
     </MainLayout>
