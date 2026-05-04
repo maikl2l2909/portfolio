@@ -33,14 +33,14 @@ function ExperienceItem({ experience, number, formatMonthYear, presentLabel }) {
       style={{ transitionDelay: `${number * 140}ms` }}
     >
       <div>
-        <div className={`flex flex-col md:flex-row items-center gap-8 md:flex-row${number % 2 === 0 ? '-reverse' : ''}`}>
+        <div className={`flex flex-col items-center gap-8 ${number % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
           <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 w-8 h-8 rounded-full bg-white border-2 border-red-600 flex items-center justify-center z-10 shadow-[0_0_15px_rgba(220,38,38,0.5)]">
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-red-600 w-4 h-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"></path>
               <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.4 5.4 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2z"></path>
             </svg>
           </div>
-          <div className={`w-full md:w-1/2 flex md:justify${number % 2 === 0 ? '-start' : '-end'}`}>
+          <div className={`w-full md:w-1/2 flex ${number % 2 === 0 ? 'md:justify-start' : 'md:justify-end'}`}>
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-2 rounded-full flex items-center gap-2 text-slate-400 text-sm font-medium">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-calendar w-4 h-4 text-red-600">
                 <path d="M8 2v4"></path>
