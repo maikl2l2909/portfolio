@@ -23,6 +23,7 @@ export const SKILL_COLORS = {
     symfony:     '#060c12',
     vite:     'rgb(189, 52, 254)',
     git:     '#d80d2b',
+    nextjs:     '#060c12',
     backend:    'currentColor',
     devops:     'currentColor',
     db:         'currentColor',

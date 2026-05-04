@@ -249,5 +249,15 @@ class SkillSeeder extends Seeder
             'icon' => '⬡',
             'sort_order' => 7,
         ]);
+
+        Skill::create([
+            'name' => 'NextJs',
+            'technology_category_id' => $tools->id,
+            'level' => 25,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 8,
+        ]);
     }
 }
