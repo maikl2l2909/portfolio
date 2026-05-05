@@ -107,7 +107,7 @@ export default function Experience({ experiences = [], sectionId, embedded = fal
     <section
       id={sectionId}
       data-nav-section={sectionId ? true : undefined}
-      className={`w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 ${embedded ? 'scroll-mt-24' : ''}`}
+      className={`w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 mb-24 ${embedded ? 'scroll-mt-24' : ''}`}
     >
       <motion.div
         className="mb-6"
