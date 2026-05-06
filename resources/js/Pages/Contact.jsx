@@ -70,7 +70,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
           className={[
             'border rounded-2xl p-6 md:p-8 border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] shadow-sm',
             'transition-all duration-700 ease-out',
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10',
           ].join(' ')}
         >
           {flash?.success && (
@@ -160,7 +160,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
           className={[
             'p-6 md:p-8 rounded-2xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-gradient-to-br from-white to-[#f7f7f6] dark:from-[#161615] dark:to-[#10100f] shadow-sm',
             'transition-all duration-700 ease-out',
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10',
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10',
           ].join(' ')}
           style={{ transitionDelay: '150ms' }}
         >

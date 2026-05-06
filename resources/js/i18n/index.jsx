@@ -29,7 +29,7 @@ const translations = {
       description:
         'Freelance software engineer focused on reliable, scalable web applications. I help teams ship clean backend systems and practical full-stack solutions.',
       ctaTalk: "Let's talk",
-      ctaExperience: 'View experience',
+      ctaResume: 'Resume',
     },
     skills: {
       title: 'My skills, applied.',
@@ -117,7 +117,7 @@ const translations = {
       description:
         'Inżynier oprogramowania (freelance), skupiony na niezawodnych i skalowalnych aplikacjach webowych. Pomagam zespołom dostarczać czytelne systemy backendowe oraz praktyczne rozwiązania full-stack.',
       ctaTalk: 'Porozmawiajmy',
-      ctaExperience: 'Zobacz doświadczenie',
+      ctaResume: 'CV',
     },
     skills: {
       title: 'Moje umiejętności w praktyce.',

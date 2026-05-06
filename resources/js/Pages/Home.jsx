@@ -80,10 +80,10 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
                 {t('home.ctaTalk')}
               </a>
               <a
-                href="/#experience"
+                href="/resume/download"
                 className="inline-flex items-center justify-center rounded-md bg-white dark:bg-[#161615] text-[#1b1b18] dark:text-[#EDEDEC] border border-[#e3e3e0] dark:border-[#3E3E3A] px-4 py-2 text-sm font-medium hover:border-[#1915014a]"
               >
-                {t('home.ctaExperience')}
+                {t('home.ctaResume')}
               </a>
             </div>
           </div>
