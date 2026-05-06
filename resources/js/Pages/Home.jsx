@@ -62,12 +62,17 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
             <p className="mt-6 text-gray-600 dark:text-[#A1A09A] text-lg sm:text-xl font-mono">
               {t('home.intro')}
             </p>
-            <div className="mt-3 mb-4">
+            <div className="mt-3 mb-4 flex items-center justify-between gap-4">
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
                 <span>{t('home.iam')} </span>
                 {typedText}
                 <span className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
               </h1>
+              <img
+                src="/storage/photo.jpg"
+                alt="Profile photo"
+                className="h-28 w-28 sm:h-56 sm:w-56 rounded-full object-cover border-2 border-white dark:border-[#1f1f1d] shadow-[0_16px_36px_rgba(0,0,0,0.28)] dark:shadow-[0_18px_38px_rgba(0,0,0,0.55)] shrink-0"
+              />
             </div>
             <p className="text-gray-600 dark:text-[#A1A09A] text-base sm:text-lg max-w-2xl">
               {t('home.description')}
