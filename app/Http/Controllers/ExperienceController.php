@@ -9,7 +9,7 @@ class ExperienceController extends Controller
 {
     public function index()
     {
-        $experiences = Experience::with('skill')
+        $experiences = Experience::with('skills')
             ->orderByDesc('start_work')
             ->get();
 

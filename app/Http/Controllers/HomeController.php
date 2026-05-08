@@ -22,7 +22,7 @@ class HomeController extends Controller
                 return $skill->technologyCategory?->name ?? 'Uncategorized';
             });
 
-        $experiences = Experience::with('skill')
+        $experiences = Experience::with('skills')
             ->orderByDesc('start_work')
             ->get();
 

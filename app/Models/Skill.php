@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Skill extends Model
 {
@@ -23,6 +22,7 @@ class Skill extends Model
         'icon',
         'sort_order',
         'technology_category_id',
+        'experience_id',
     ];
 
     public function technologyCategory(): BelongsTo
@@ -30,9 +30,9 @@ class Skill extends Model
         return $this->belongsTo(TechnologyCategory::class);
     }
 
-    public function experiences(): HasMany
+    public function experience(): BelongsTo
     {
-        return $this->hasMany(Experience::class);
+        return $this->belongsTo(Experience::class);
     }
 }
 

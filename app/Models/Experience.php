@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Experience extends Model
@@ -13,7 +13,6 @@ class Experience extends Model
         'start_work',
         'end_work',
         'description',
-        'skill_id',
     ];
 
     protected $casts = [
@@ -21,8 +20,8 @@ class Experience extends Model
         'end_work' => 'date',
     ];
 
-    public function skill(): BelongsTo
+    public function skills(): HasMany
     {
-        return $this->belongsTo(Skill::class);
+        return $this->hasMany(Skill::class);
     }
 }
