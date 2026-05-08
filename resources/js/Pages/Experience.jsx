@@ -81,6 +81,13 @@ function ExperienceItem({ experience, number, formatMonthYear, presentLabel }) {
               </div>
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-red-600/20 via-transparent to-red-900/20 opacity-0 transition-opacity duration-500 pointer-events-none"></div>
             </div>
+            <div className={`mt-6 flex flex-wrap gap-2 ${number % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+              {experience.skills.map((skill) => (
+                <span key={skill.id} className="px-2.5 py-1 text-xs font-medium bg-gray-900/10 border border-white/10 text-slate-400 rounded-full">
+                  {skill.name}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
