@@ -23,7 +23,9 @@ class ExperienceSeeder extends Seeder
             'company_name' => 'Acme Digital',
             'start_work' => '2022-03-01',
             'end_work' => null,
-            'description' => 'Built and maintained Laravel APIs and React dashboards. Improved performance of key reports and introduced automated tests for critical flows.',
+            'description' => 'I specialize in developing high-performance application and services for the Shopify cloud platform.
+            Worked with the Shopify platform to develop and customize E-Commerce stores. Customize Shopify themes, ensuring optimized UI/UX and improved conversions.  Design and implement React/Redux interfaces for engaging user experiences.            
+             Build and integrate RESTful & GraphQL API services for Shopify.Create API application using PHP (Laravel) and JavaScript (React) to extend Shopify functionality',
         ]);
 
         $backend = Experience::create([
