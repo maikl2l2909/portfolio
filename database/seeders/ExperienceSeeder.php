@@ -20,12 +20,15 @@ class ExperienceSeeder extends Seeder
 
         $fullStack = Experience::create([
             'title' => 'Full Stack Developer',
-            'company_name' => 'Acme Digital',
-            'start_work' => '2022-03-01',
-            'end_work' => null,
-            'description' => 'I specialize in developing high-performance application and services for the Shopify cloud platform.
-            Worked with the Shopify platform to develop and customize E-Commerce stores. Customize Shopify themes, ensuring optimized UI/UX and improved conversions.  Design and implement React/Redux interfaces for engaging user experiences.            
-             Build and integrate RESTful & GraphQL API services for Shopify.Create API application using PHP (Laravel) and JavaScript (React) to extend Shopify functionality',
+            'company_name' => 'Elastic-Soft',
+            
+            'start_work' => '2020-04-01',
+            'end_work' => '2025-01-05',
+            'description' => 'I specialize in developing high-performance applications and services for the Shopify platform. I have extensive experience in building, customizing, and optimizing e-commerce stores to improve scalability, user experience, and business performance.
+
+My expertise includes customizing Shopify themes, improving UI/UX, and increasing store performance and conversion rates. I design and implement modern user interfaces using React and Redux to create engaging user experiences.
+
+I also build and integrate RESTful and GraphQL APIs for Shopify applications. Additionally, I develop custom API applications using PHP (Laravel) and JavaScript (React) to extend Shopify functionality and integrate third-party services.',
         ]);
 
         $backend = Experience::create([

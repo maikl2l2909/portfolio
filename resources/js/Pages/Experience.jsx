@@ -73,7 +73,7 @@ function ExperienceItem({ experience, number, formatMonthYear, presentLabel }) {
                 </div>
                 <div className="space-y-3 mt-2">
                   <div className="flex gap-3 items-start group/item">
-                    <p className="text-slate-400 text-sm lg:text-base leading-relaxed transition-colors">
+                    <p className="text-slate-400 text-sm lg:text-base leading-relaxed transition-colors whitespace-pre-line">
                       {experience.description}
                     </p>
                   </div>
