@@ -291,6 +291,16 @@ class SkillSeeder extends Seeder
             'sort_order' => 2,
         ]);
 
+        Skill::create([
+            'name' => 'Nginx',
+            'technology_category_id' => $infrastructure->id,
+            'level' => 65,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 3,
+        ]);
+
 
     }
 }

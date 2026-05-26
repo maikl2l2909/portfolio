@@ -27,6 +27,7 @@ export const SKILL_COLORS = {
     docker:     '#186eb1',
     ubuntu:     '#d11635',
     apache:     'rgb(210, 33, 40)',
+    nginx:     '#0ba828',
     backend:    'currentColor',
     devops:     'currentColor',
     db:         'currentColor',

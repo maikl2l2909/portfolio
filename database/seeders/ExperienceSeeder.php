@@ -31,13 +31,15 @@ class ExperienceSeeder extends Seeder
             'Shopify',
             'Vite',
             'Git',
-            'Ubuntu'
+            'Ubuntu',
+            'Nginx'
         ])
             ->get()
             ->keyBy('name');
 
         $contactLineServiceSkills = Skill::whereIn('name', [
             'Yii2',
+            'PHP',
             'Bootstrap',
             'JavaScript',
             'Jquery',
@@ -51,7 +53,15 @@ class ExperienceSeeder extends Seeder
             ->get()
             ->keyBy('name');
 
-        $php = Skill::where('name', 'PHP')->first();
+        $freelanceSkills = Skill::whereIn('name', [
+            'PHP',
+            'Yii2',
+            'Html',
+            'Css',
+            'Bootstrap',
+        ])
+            ->get()
+            ->keyBy('name');
 
         $elasticSoft = Experience::create([
             'title' => 'Full Stack Developer',
@@ -74,16 +84,16 @@ I also build and integrate RESTful and GraphQL APIs for Shopify applications. Ad
 Planned application architecture and database structure, optimized SQL queries, wrote automated tests, and implemented new features. Worked on both backend and frontend development while maintaining clean, self-documenting code.',
         ]);
 
-        $junior = Experience::create([
+        $freelance = Experience::create([
             'title' => 'Junior Web Developer',
-            'company_name' => 'Starter Studio',
-            'start_work' => '2017-09-01',
-            'end_work' => '2019-05-31',
-            'description' => 'Implemented UI features from Figma, fixed cross-browser issues, and paired with seniors on feature delivery and code reviews.',
+            'company_name' => 'Freelance',
+            'start_work' => '2019-04-29',
+            'end_work' => '2019-09-01',
+            'description' => 'Developed a responsive e-commerce watch store using the Yii2 framework and Bootstrap for cross-browser compatibility.',
         ]);
 
         $elasticSoftSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $elasticSoft->id]));
         $contactLineServiceSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $contactLineService->id]));
-//        $react?->update(['experience_id' => $junior->id]);
+        $freelanceSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $freelance->id]));
     }
 }
