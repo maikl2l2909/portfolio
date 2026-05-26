@@ -32,11 +32,12 @@ I also build and integrate RESTful and GraphQL APIs for Shopify applications. Ad
         ]);
 
         $backend = Experience::create([
-            'title' => 'Backend Developer',
-            'company_name' => 'Northwind Labs',
-            'start_work' => '2019-06-01',
-            'end_work' => '2022-02-28',
-            'description' => 'Designed REST services, integrated third-party payment providers, and helped migrate a monolith toward clearer service boundaries.',
+            'title' => 'Full Stack Developer',
+            'company_name' => 'ContactLineService',
+            'start_work' => '2019-09-10',
+            'end_work' => '2020-04-01',
+            'description' => 'Developed and enhanced web applications using the Yii2 PHP framework, including online marketplaces, information portals with hotel and apartment booking systems, and IQ testing platforms.
+Planned application architecture and database structure, optimized SQL queries, wrote automated tests, and implemented new features. Worked on both backend and frontend development while maintaining clean, self-documenting code.',
         ]);
 
         $junior = Experience::create([
