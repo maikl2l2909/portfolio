@@ -14,14 +14,48 @@ class ExperienceSeeder extends Seeder
      */
     public function run(): void
     {
-        $laravel = Skill::where('name', 'Laravel')->first();
-        $react = Skill::where('name', 'React')->first();
+        $elasticSoftSkills = Skill::whereIn('name', [
+            'Html',
+            'Css',
+            'Docker',
+            'Laravel',
+            'JavaScript',
+            'React',
+            'PHP',
+            'Tailwind',
+            'Mysql',
+            'Postgresql',
+            'MongoDB',
+            'Elasticsearch',
+            'GraphQL',
+            'Shopify',
+            'Vite',
+            'Git',
+            'Ubuntu'
+        ])
+            ->get()
+            ->keyBy('name');
+
+        $contactLineServiceSkills = Skill::whereIn('name', [
+            'Yii2',
+            'Bootstrap',
+            'JavaScript',
+            'Jquery',
+            'Mysql',
+            'Apache',
+            'Git',
+            'Html',
+            'Css',
+            'Sass',
+        ])
+            ->get()
+            ->keyBy('name');
+
         $php = Skill::where('name', 'PHP')->first();
 
-        $fullStack = Experience::create([
+        $elasticSoft = Experience::create([
             'title' => 'Full Stack Developer',
             'company_name' => 'Elastic-Soft',
-            
             'start_work' => '2020-04-01',
             'end_work' => '2025-01-05',
             'description' => 'I specialize in developing high-performance applications and services for the Shopify platform. I have extensive experience in building, customizing, and optimizing e-commerce stores to improve scalability, user experience, and business performance.
@@ -31,7 +65,7 @@ My expertise includes customizing Shopify themes, improving UI/UX, and increasin
 I also build and integrate RESTful and GraphQL APIs for Shopify applications. Additionally, I develop custom API applications using PHP (Laravel) and JavaScript (React) to extend Shopify functionality and integrate third-party services.',
         ]);
 
-        $backend = Experience::create([
+        $contactLineService = Experience::create([
             'title' => 'Full Stack Developer',
             'company_name' => 'ContactLineService',
             'start_work' => '2019-09-10',
@@ -48,8 +82,8 @@ Planned application architecture and database structure, optimized SQL queries, 
             'description' => 'Implemented UI features from Figma, fixed cross-browser issues, and paired with seniors on feature delivery and code reviews.',
         ]);
 
-        $laravel?->update(['experience_id' => $fullStack->id]);
-        $php?->update(['experience_id' => $backend->id]);
-        $react?->update(['experience_id' => $junior->id]);
+        $elasticSoftSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $elasticSoft->id]));
+        $contactLineServiceSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $contactLineService->id]));
+//        $react?->update(['experience_id' => $junior->id]);
     }
 }

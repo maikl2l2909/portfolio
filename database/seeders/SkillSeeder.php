@@ -18,6 +18,7 @@ class SkillSeeder extends Seeder
         $backend = TechnologyCategory::where('name', 'Backend')->first();
         $database = TechnologyCategory::where('name', 'Database')->first();
         $tools = TechnologyCategory::where('name', 'Tools & Frameworks')->first();
+        $infrastructure = TechnologyCategory::where('name', 'Infrastructure')->first();
 
         Skill::create([
             'name'        => 'Html',
@@ -251,13 +252,45 @@ class SkillSeeder extends Seeder
         ]);
 
         Skill::create([
+            'name' => 'Docker',
+            'technology_category_id' => $tools->id,
+            'level' => 65,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 8,
+        ]);
+
+        Skill::create([
             'name' => 'NextJs',
             'technology_category_id' => $tools->id,
             'level' => 25,
             'description' => 'Default...',
             'tags' => ['Default', 'Any'],
             'icon' => '⬡',
-            'sort_order' => 8,
+            'sort_order' => 9,
         ]);
+
+        Skill::create([
+            'name' => 'Ubuntu',
+            'technology_category_id' => $infrastructure->id,
+            'level' => 75,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 1,
+        ]);
+
+        Skill::create([
+            'name' => 'Apache',
+            'technology_category_id' => $infrastructure->id,
+            'level' => 65,
+            'description' => 'Default...',
+            'tags' => ['Default', 'Any'],
+            'icon' => '⬡',
+            'sort_order' => 2,
+        ]);
+
+
     }
 }
