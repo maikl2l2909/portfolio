@@ -14,14 +14,14 @@ const translations = {
       skills: 'Skills',
       experience: 'Experience',
       contact: 'Contact',
-      portfolioTitle: 'My Portfolio',
+      portfolioTitle: 'Dzmitry Maksimuk',
     },
     common: {
       language: 'Language',
       present: 'Present',
     },
     home: {
-      title: 'Home',
+      title: 'Dzmitry Maksimuk | Full-Stack',
       availableForWork: 'Available for work',
       intro: "Hi, I'm Dima Maksimuk",
       iam: 'I am a',
@@ -109,7 +109,7 @@ const translations = {
       present: 'Obecnie',
     },
     home: {
-      title: 'Start',
+      title: 'Dzmitry Maksimuk | Full-Stack',
       availableForWork: 'Dostępny do pracy',
       intro: 'Cześć, jestem Dima Maksimuk',
       iam: 'Jestem',
