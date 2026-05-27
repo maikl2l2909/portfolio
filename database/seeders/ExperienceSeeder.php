@@ -92,8 +92,8 @@ Planned application architecture and database structure, optimized SQL queries, 
             'description' => 'Developed a responsive e-commerce watch store using the Yii2 framework and Bootstrap for cross-browser compatibility.',
         ]);
 
-        $elasticSoftSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $elasticSoft->id]));
-        $contactLineServiceSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $contactLineService->id]));
-        $freelanceSkills->each(fn(Skill $skill) => $skill->update(['experience_id' => $freelance->id]));
+        $elasticSoft->skills()->sync($elasticSoftSkills->pluck('id'));
+        $contactLineService->skills()->sync($contactLineServiceSkills->pluck('id'));
+        $freelance->skills()->sync($freelanceSkills->pluck('id'));
     }
 }

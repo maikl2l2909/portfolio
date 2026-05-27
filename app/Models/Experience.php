@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class Experience extends Model
 {
@@ -19,9 +21,8 @@ class Experience extends Model
         'start_work' => 'date',
         'end_work' => 'date',
     ];
-
-    public function skills(): HasMany
+    public function skills(): BelongsToMany
     {
-        return $this->hasMany(Skill::class);
+        return $this->belongsToMany(Skill::class);
     }
 }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class Skill extends Model
 {
@@ -30,9 +32,10 @@ class Skill extends Model
         return $this->belongsTo(TechnologyCategory::class);
     }
 
-    public function experience(): BelongsTo
+    public function experiences(): BelongsToMany
     {
-        return $this->belongsTo(Experience::class);
+        return $this->belongsToMany(Experience::class);
     }
+
 }
 

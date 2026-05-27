@@ -17,7 +17,6 @@ return new class extends Migration
             $table->date('start_work')->after('company_name');
             $table->date('end_work')->nullable()->after('start_work');
             $table->text('description')->nullable()->after('end_work');
-            $table->foreignId('skill_id')->nullable()->after('description')->constrained()->nullOnDelete();
         });
     }
 
@@ -27,7 +26,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('skill_id');
             $table->dropColumn(['title', 'company_name', 'start_work', 'end_work', 'description']);
         });
     }
