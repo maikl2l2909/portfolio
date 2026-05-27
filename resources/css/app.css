@@ -4,6 +4,13 @@
     /* Avoid layout shift when vertical scrollbar appears/disappears between pages */
     html {
         scrollbar-gutter: stable;
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
     }
 }
 
