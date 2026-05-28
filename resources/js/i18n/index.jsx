@@ -28,7 +28,7 @@ const translations = {
       iam: 'I am a',
       roles: ['backend developer', 'full stack developer'],
       description:
-        'Freelance software engineer focused on reliable, scalable web applications. I help teams ship clean backend systems and practical full-stack solutions.',
+        'Software engineer focused on reliable, scalable web applications. I help teams ship clean backend systems and practical full-stack solutions.',
       ctaTalk: "Let's talk",
       ctaResume: 'Resume',
     },
@@ -116,7 +116,7 @@ const translations = {
       iam: 'Jestem',
       roles: ['backend developerem', 'full stack developerem'],
       description:
-        'Inżynier oprogramowania (freelance), skupiony na niezawodnych i skalowalnych aplikacjach webowych. Pomagam zespołom dostarczać czytelne systemy backendowe oraz praktyczne rozwiązania full-stack.',
+        'Inżynier oprogramowania, skupiony na niezawodnych i skalowalnych aplikacjach webowych. Pomagam zespołom dostarczać czytelne systemy backendowe oraz praktyczne rozwiązania full-stack.',
       ctaTalk: 'Porozmawiajmy',
       ctaResume: 'CV',
     },
