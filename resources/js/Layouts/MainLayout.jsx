@@ -114,7 +114,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
 
           <footer className="border-t border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] mt-auto">
             <div className="max-w-6xl mx-auto px-6 py-4 text-sm text-gray-600 dark:text-[#A1A09A]">
-              © {new Date().getFullYear()} {t('nav.portfolioTitle')}. {t('footer.rightsReserved')}
+              © {new Date().getFullYear()} {t('nav.fullName')}. {t('footer.rightsReserved')}
             </div>
           </footer>
         </motion.div>

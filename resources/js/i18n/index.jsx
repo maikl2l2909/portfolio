@@ -14,7 +14,8 @@ const translations = {
       skills: 'Skills',
       experience: 'Experience',
       contact: 'Contact',
-      portfolioTitle: 'Dzmitry Maksimuk',
+      portfolioTitle: 'My Portfolio',
+      fullName: 'Dzmitry Maksimuk',
     },
     common: {
       language: 'Language',
