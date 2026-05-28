@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { Head } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
-import { SKILL_ICONS } from './Components/SkillIcons';
 import { SkillCard } from './Components/SkillCard.jsx'
 import { useLanguage } from '../i18n';
+import {CATEGORIES_ICONS} from "./Components/CategoriesIcons.jsx";
 
 // ---------------------------------------------------------------------------
 // Level badge config
@@ -12,29 +12,6 @@ const LEVEL_STYLES = {
     Expert:   'bg-indigo-100 text-indigo-700 border border-indigo-200',
     Advanced: 'bg-emerald-100 text-emerald-700 border border-emerald-200',
     Mid:      'bg-amber-100 text-amber-700 border border-amber-200',
-};
-
-const CATEGORY_ICONS = {
-    frontend: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-        </svg>
-    ),
-    backend: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-        </svg>
-    ),
-    devops: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-        </svg>
-    ),
-    db: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-        </svg>
-    ),
 };
 
 // ---------------------------------------------------------------------------
@@ -176,15 +153,7 @@ export default function Skills({
                             return (
                                 <div key={key}>
                                     <h3 className="flex items-center gap-2 text-lg font-medium text-foreground mb-8">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                             stroke-linecap="round" stroke-linejoin="round"
-                                             className="lucide lucide-server w-5 h-5 text-primary" aria-hidden="true">
-                                            <rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect>
-                                            <rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect>
-                                            <line x1="6" x2="6.01" y1="6" y2="6"></line>
-                                            <line x1="6" x2="6.01" y1="18" y2="18"></line>
-                                        </svg>
+                                        {CATEGORIES_ICONS[label.toLowerCase()]}
                                         {label}
                                     </h3>
                                     <div className="grid grid-cols-4 xl:grid-cols-6 gap-2">
