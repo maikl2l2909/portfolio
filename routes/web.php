@@ -10,7 +10,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/skills', fn () => redirect('/#skills'))->name('skills');
 Route::get('/experience', fn () => redirect('/#experience'))->name('experience');
 Route::get('/resume/download', function () {
-    $resumePath = 'Dmitry Maksimuk.pdf';
+    $resumePath = 'Dzmitry Maksimuk.pdf';
 
     abort_unless(Storage::disk('public')->exists($resumePath), 404);
 
