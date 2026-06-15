@@ -111,7 +111,8 @@ export default function Skills({
 
     // Use dynamic data if available, otherwise fallback
     const categories = technologyCategories.length > 0 ? dynamicCategories : [];
-    const categoryIcons = technologyCategories.length > 0 ? dynamicCategoryIcons : CATEGORY_ICONS;
+    const categoryIcons = technologyCategories.length > 0 ? dynamicCategoryIcons : CATEGORIES_ICONS;
+
 
     const [activeTab, setActiveTab] = useState('all');
     const [animKey, setAnimKey] = useState(0);
@@ -149,6 +150,7 @@ export default function Skills({
                         </p>
                     </div>
                     <div className="flex flex-wrap lg:gap-x-12 gap-6">
+                        {console.log('categoriesWithSkills!', categoriesWithSkills)}
                         {categoriesWithSkills.map(({ key, label, icon, skills }) => {
                             return (
                                 <div key={key}>
