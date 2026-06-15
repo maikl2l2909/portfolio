@@ -88,11 +88,6 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
                 </a>
               </div>
             </div>
-            <img
-              src="/storage/photo.jpg"
-              alt="Profile photo"
-              className="self-end sm:self-start h-28 w-28 sm:h-56 sm:w-56 rounded-full object-cover border-2 border-white dark:border-[#1f1f1d] shadow-[0_16px_36px_rgba(0,0,0,0.28)] dark:shadow-[0_18px_38px_rgba(0,0,0,0.55)] shrink-0"
-            />
           </div>
         </div>
 
