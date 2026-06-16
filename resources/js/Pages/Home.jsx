@@ -66,8 +66,13 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
               <div className="mt-3 mb-4">
                 <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
                   <span>{t('home.iam')} </span>
-                  {typedText}
-                  <span className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
+                  <span className="hidden sm:inline">
+                    {typedText}
+                    <span className="ml-1 inline-block w-[1ch] animate-pulse">|</span>
+                  </span>
+                  <span className="inline sm:hidden">
+                    {roles[1]}
+                  </span>
                 </h1>
               </div>
               <p className="text-gray-600 dark:text-[#A1A09A] text-base sm:text-lg max-w-2xl">
@@ -91,7 +96,7 @@ export default function Home({ skills = {}, technologyCategories = [] , experien
             <img
               src="/storage/photo.jpg"
               alt="Profile photo"
-              className="self-end sm:self-start h-28 w-28 sm:h-56 sm:w-56 rounded-full object-cover border-2 border-white dark:border-[#1f1f1d] shadow-[0_16px_36px_rgba(0,0,0,0.28)] dark:shadow-[0_18px_38px_rgba(0,0,0,0.55)] shrink-0"
+              className="hidden sm:block self-end sm:self-start h-28 w-28 sm:h-56 sm:w-56 rounded-full object-cover border-2 border-white dark:border-[#1f1f1d] shadow-[0_16px_36px_rgba(0,0,0,0.28)] dark:shadow-[0_18px_38px_rgba(0,0,0,0.55)] shrink-0"
             />
           </div>
         </div>
