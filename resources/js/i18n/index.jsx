@@ -58,6 +58,11 @@ const translations = {
       location: 'Location',
       locationValue: 'Poland',
       replyTime: 'Usually replies within 24 hours.',
+      success: {
+        title: 'Thank You!',
+        message: 'Your message has been sent successfully. I will get back to you as soon as possible.',
+        close: 'Close',
+      },
     },
     footer: {
       rightsReserved: 'All rights reserved.',
@@ -151,6 +156,11 @@ const translations = {
       location: 'Lokalizacja',
       locationValue: 'Polska, Kraków',
       replyTime: 'Zwykle odpowiadam w ciągu 24 godzin.',
+      success: {
+        title: 'Dziękuję!',
+        message: 'Twoja wiadomość została wysłana pomyślnie. Odpowiem tak szybko, jak to możliwe.',
+        close: 'Zamknij',
+      },
     },
     footer: {
       rightsReserved: 'Wszelkie prawa zastrzeżone.',

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm, usePage } from '@inertiajs/react';
 import MainLayout from '../Layouts/MainLayout';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../i18n';
 
 export default function Contact({ embedded = false, sectionId = 'contact' }) {
@@ -15,6 +15,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
   });
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     const node = sectionRef.current;
@@ -40,6 +41,7 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
     post('/contact', {
       onSuccess: () => {
         reset();
+        setShowSuccess(true);
       },
     });
   }
@@ -48,9 +50,59 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
     <section
       id={sectionId}
       data-nav-section
-      className="mt-14 scroll-mt-24 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10"
+      className="mt-14 scroll-mt-24 w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 relative"
       ref={sectionRef}
     >
+      <AnimatePresence>
+        {showSuccess && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowSuccess(false)}
+              className="absolute inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-md overflow-hidden rounded-3xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] p-8 shadow-2xl"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400">
+                  <svg
+                    className="h-8 w-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2.5}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-2xl font-bold tracking-tight">
+                  {t('contact.success.title')}
+                </h3>
+                <p className="mb-8 text-gray-600 dark:text-[#A1A09A]">
+                  {t('contact.success.message')}
+                </p>
+                <button
+                  onClick={() => setShowSuccess(false)}
+                  className="w-full rounded-2xl bg-black px-6 py-4 font-semibold text-white transition-all hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                >
+                  {t('contact.success.close')}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       <motion.div
         className="mb-10 text-center"
         initial={{ opacity: 0, y: 10 }}
@@ -73,12 +125,6 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10',
           ].join(' ')}
         >
-          {flash?.success && (
-            <div className="mb-5 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 px-4 py-3 text-sm">
-              {flash.success}
-            </div>
-          )}
-
           <motion.div
             className={[
               'mb-5 transition-all duration-700 ease-out',
