@@ -17,6 +17,7 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
   const { url } = usePage();
   const pathname = (url ?? '/').split(/[?#]/)[0] || '/';
   const [activeSection, setActiveSection] = React.useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
   const { language, setLanguage, t } = useLanguage();
   const languageCodes = Object.keys(SUPPORTED_LANGUAGES);
   const isEnglish = language === 'en';
@@ -48,18 +49,60 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
     return () => observer.disconnect();
   }, [pathname]);
 
+  React.useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
   return (
     <>
       <Head title={title} />
 
-      <div className="min-h-screen bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#0a0a0a] dark:text-[#EDEDEC] flex flex-col">
+      <div className="min-h-screen overflow-x-hidden bg-[#FDFDFC] text-[#1b1b18] dark:bg-[#0a0a0a] dark:text-[#EDEDEC] flex flex-col">
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white/60 dark:bg-[#161615]/80 backdrop-blur-md shadow-md">
-          <div className="w-full max-w-screen-2xl mx-auto lg:px-10 px-6 py-4 flex items-center justify-between gap-4">
+          <div className="w-full max-w-screen-2xl mx-auto lg:px-10 px-4 sm:px-6 py-4 flex items-center justify-between gap-4">
             <Link href="/" className="text-lg font-semibold tracking-wide shrink-0">
               Dzmitry Maksimuk
             </Link>
 
-            <nav className="flex flex-nowrap items-center justify-end gap-2 shrink-0">
+            <div className="flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                aria-label={`Switch to ${nextLanguageLabel}`}
+                onClick={() => setLanguage(nextLanguage)}
+                className="isolate relative w-14 h-7 rounded-full cursor-pointer bg-stone-300 dark:bg-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              >
+                <span
+                  className={[
+                    'absolute top-1 left-0 w-5 h-5 rounded-full overflow-hidden',
+                    'transition-transform duration-300 ease-in-out bg-white dark:bg-[#161615]',
+                    'flex items-center justify-center text-[10px] font-bold text-[#1b1b18] dark:text-[#EDEDEC]',
+                    isEnglish ? 'translate-x-1' : 'translate-x-8',
+                  ].join(' ')}
+                >
+                  {currentLanguageLabel}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                className="sm:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#e3e3e0] dark:border-[#3E3E3A]"
+                aria-expanded={isMobileMenuOpen}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              >
+                {isMobileMenuOpen ? (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            <nav className="hidden sm:flex flex-nowrap items-center justify-end gap-2 shrink-0">
               {navItems.map((item) => {
                 const isActive = pathname === '/' ? activeSection === item.section : false;
 
@@ -78,25 +121,36 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
                   </a>
                 );
               })}
-              <button
-                type="button"
-                aria-label={`Switch to ${nextLanguageLabel}`}
-                onClick={() => setLanguage(nextLanguage)}
-                className="ml-2 isolate relative w-14 h-7 rounded-full cursor-pointer bg-stone-300 dark:bg-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              >
-                <span
-                  className={[
-                    'absolute top-1 left-0 w-5 h-5 rounded-full overflow-hidden',
-                    'transition-transform duration-300 ease-in-out bg-white dark:bg-[#161615]',
-                    'flex items-center justify-center text-[10px] font-bold text-[#1b1b18] dark:text-[#EDEDEC]',
-                    isEnglish ? 'translate-x-1' : 'translate-x-8',
-                  ].join(' ')}
-                >
-                  {currentLanguageLabel}
-                </span>
-              </button>
             </nav>
           </div>
+
+          {isMobileMenuOpen && (
+            <div className="sm:hidden absolute top-full left-0 right-0 border-b border-[#e3e3e0] dark:border-[#3E3E3A] bg-white/95 dark:bg-[#161615]/95 backdrop-blur-md shadow-md">
+              <nav className="w-full max-w-screen-2xl mx-auto lg:px-10 px-4 pb-3">
+                <div className="rounded-xl border border-[#e3e3e0] dark:border-[#3E3E3A] bg-white dark:bg-[#161615] p-2 flex flex-col gap-1">
+                  {navItems.map((item) => {
+                    const isActive = pathname === '/' ? activeSection === item.section : false;
+
+                    return (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={[
+                          'inline-flex items-center rounded-lg px-3 py-2 text-sm border border-transparent',
+                          isActive
+                            ? 'text-[#1b1b18] dark:text-[#EDEDEC] bg-[#f3f3f1] dark:bg-[#242423]'
+                            : 'text-[#1b1b18] dark:text-[#EDEDEC] hover:bg-[#f3f3f1] dark:hover:bg-[#242423]',
+                        ].join(' ')}
+                      >
+                        {t(item.labelKey)}
+                      </a>
+                    );
+                  })}
+                </div>
+              </nav>
+            </div>
+          )}
         </header>
 
         <motion.div
