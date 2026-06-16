@@ -53,6 +53,26 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
+  const languageSwitcher = (
+    <button
+      type="button"
+      aria-label={`Switch to ${nextLanguageLabel}`}
+      onClick={() => setLanguage(nextLanguage)}
+      className="isolate relative w-14 h-7 rounded-full cursor-pointer bg-stone-300 dark:bg-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+    >
+      <span
+        className={[
+          'absolute top-1 left-0 w-5 h-5 rounded-full overflow-hidden',
+          'transition-transform duration-300 ease-in-out bg-white dark:bg-[#161615]',
+          'flex items-center justify-center text-[10px] font-bold text-[#1b1b18] dark:text-[#EDEDEC]',
+          isEnglish ? 'translate-x-1' : 'translate-x-8',
+        ].join(' ')}
+      >
+        {currentLanguageLabel}
+      </span>
+    </button>
+  );
+
   return (
     <>
       <Head title={title} />
@@ -64,28 +84,11 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
               Dzmitry Maksimuk
             </Link>
 
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="sm:hidden flex items-center gap-2 shrink-0">
+              {languageSwitcher}
               <button
                 type="button"
-                aria-label={`Switch to ${nextLanguageLabel}`}
-                onClick={() => setLanguage(nextLanguage)}
-                className="isolate relative w-14 h-7 rounded-full cursor-pointer bg-stone-300 dark:bg-muted shadow-[inset_0_2px_4px_rgba(0,0,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              >
-                <span
-                  className={[
-                    'absolute top-1 left-0 w-5 h-5 rounded-full overflow-hidden',
-                    'transition-transform duration-300 ease-in-out bg-white dark:bg-[#161615]',
-                    'flex items-center justify-center text-[10px] font-bold text-[#1b1b18] dark:text-[#EDEDEC]',
-                    isEnglish ? 'translate-x-1' : 'translate-x-8',
-                  ].join(' ')}
-                >
-                  {currentLanguageLabel}
-                </span>
-              </button>
-
-              <button
-                type="button"
-                className="sm:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#e3e3e0] dark:border-[#3E3E3A]"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#e3e3e0] dark:border-[#3E3E3A]"
                 aria-expanded={isMobileMenuOpen}
                 aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
                 onClick={() => setIsMobileMenuOpen((prev) => !prev)}
@@ -102,26 +105,29 @@ export default function MainLayout({ title = 'Portfolio', children, className, m
               </button>
             </div>
 
-            <nav className="hidden sm:flex flex-nowrap items-center justify-end gap-2 shrink-0">
-              {navItems.map((item) => {
-                const isActive = pathname === '/' ? activeSection === item.section : false;
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
+              <nav className="flex flex-nowrap items-center gap-2">
+                {navItems.map((item) => {
+                  const isActive = pathname === '/' ? activeSection === item.section : false;
 
-                return (
-                  <a
-                    key={item.href}
-                    href={item.href}
-                    className={[
-                      'inline-flex items-center justify-center px-3 py-2 text-md whitespace-nowrap bg-transparent border-b-2 border-transparent transition-colors',
-                      isActive
-                        ? 'text-[#1b1b18] dark:text-[#EDEDEC] border-[#1b1b18] dark:border-[#EDEDEC] underline underline-offset-4'
-                        : 'text-[#1b1b18] dark:text-[#EDEDEC] hover:text-black dark:hover:text-white',
-                    ].join(' ')}
-                  >
-                    {t(item.labelKey)}
-                  </a>
-                );
-              })}
-            </nav>
+                  return (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className={[
+                        'inline-flex items-center justify-center px-3 py-2 text-md whitespace-nowrap bg-transparent border-b-2 border-transparent transition-colors',
+                        isActive
+                          ? 'text-[#1b1b18] dark:text-[#EDEDEC] border-[#1b1b18] dark:border-[#EDEDEC] underline underline-offset-4'
+                          : 'text-[#1b1b18] dark:text-[#EDEDEC] hover:text-black dark:hover:text-white',
+                      ].join(' ')}
+                    >
+                      {t(item.labelKey)}
+                    </a>
+                  );
+                })}
+              </nav>
+              {languageSwitcher}
+            </div>
           </div>
 
           {isMobileMenuOpen && (
