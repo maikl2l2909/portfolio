@@ -55,7 +55,7 @@ const translations = {
       directCommunication: 'Prefer direct communication? Use any of the channels below.',
       phone: 'Phone',
       location: 'Location',
-      locationValue: 'Poland, Krakow',
+      locationValue: 'Poland',
       replyTime: 'Usually replies within 24 hours.',
     },
     footer: {

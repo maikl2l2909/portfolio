@@ -190,7 +190,9 @@ export default function Contact({ embedded = false, sectionId = 'contact' }) {
               </div>
               <div>
                 <p className="text-sm text-gray-600 dark:text-[#A1A09A]">{t('contact.phone')}</p>
-                <p className="font-medium">+516828838</p>
+                <a href="tel:+48511437092" className="font-medium hover:underline">
+                  +48 511 437 092
+                </a>
               </div>
             </div>
 
