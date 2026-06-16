@@ -54,6 +54,7 @@ const translations = {
       contactInformation: 'Contact Information',
       directCommunication: 'Prefer direct communication? Use any of the channels below.',
       phone: 'Phone',
+      linkedin: 'LinkedIn',
       location: 'Location',
       locationValue: 'Poland',
       replyTime: 'Usually replies within 24 hours.',
@@ -146,6 +147,7 @@ const translations = {
       directCommunication:
         'Wolisz bezpośredni kontakt? Skorzystaj z poniższych kanałów.',
       phone: 'Telefon',
+      linkedin: 'LinkedIn',
       location: 'Lokalizacja',
       locationValue: 'Polska, Kraków',
       replyTime: 'Zwykle odpowiadam w ciągu 24 godzin.',
